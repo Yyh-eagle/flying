@@ -1,0 +1,2 @@
+[console_scripts]
+tft265 = yyh_nav.tft265:main

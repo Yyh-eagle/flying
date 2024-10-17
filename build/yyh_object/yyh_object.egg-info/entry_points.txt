@@ -1,0 +1,3 @@
+[console_scripts]
+camera = yyh_object.camera:main
+image = yyh_object.image:main
