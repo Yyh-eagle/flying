@@ -8,6 +8,8 @@ setup.py
 ../../build/yyh_object/yyh_object.egg-info/requires.txt
 ../../build/yyh_object/yyh_object.egg-info/top_level.txt
 ../../build/yyh_object/yyh_object.egg-info/zip-safe
+launch/image_launch.py
+launch/usb_launch.py
 resource/yyh_object
 test/test_copyright.py
 test/test_flake8.py

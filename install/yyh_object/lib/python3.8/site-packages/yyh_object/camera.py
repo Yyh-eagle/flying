@@ -61,6 +61,9 @@ class ImageSubscriber(Node):
         self.start_time = time.time()
         self.usb = None
         self.cap = cv2.VideoCapture(0)
+        # 创建定时器，每隔0.1秒调用一次 image_process
+        self.timer = self.create_timer(0.01, self.image_process)
+
         self.image_process()
         
         
@@ -237,27 +240,19 @@ class ImageSubscriber(Node):
         #print(time)
                     
     def image_process(self):
-        
-    
-        ind =0
-        while True:
-            ind +=1
-            ret, frame = self.cap.read()
-            self.usb = frame
-            # self.frame_count += 1
+        ret, frame = self.cap.read()
+        if not ret:
+            self.get_logger().warning("Failed to capture frame")
+            return
 
-            # 计算和更新帧率
-            # elapsed_time = time.time() - self.start_time
-            # if elapsed_time > 1.0:  # 每秒更新一次
-            #     self.fps = self.frame_count / elapsed_time
-            #     self.frame_count = 0
-            #     self.start_time = time.time()
-            #     print(f"Current FPS: {self.fps:.2f}")
-            # cv2.imshow("raw",frame)
-            #self.color_detect(self.usb)
-            if ind%3==0:
-                self.locate_yolo_usb(frame)
-                        
+        # 处理图像，例如每3帧进行一次YOLO检测
+        if self.frame_count % 3 == 0:
+            self.locate_yolo_usb(frame)
+
+        self.frame_count += 1
+
+    
+       
                     
     
         
