@@ -22,7 +22,7 @@ import time
 
 def data_transform(data):
     data = int(data *1000)
-    print(data/10)
+    #print(data/10)
     data=int(data)
     if data <0:
         data=data+256*256
@@ -76,7 +76,7 @@ class SerialPort():
         # print('sum=',s)
         transdata=bytearray([0xb3,0xb3, t265_x_low,t265_x_high,t265_y_low,t265_y_high,t265_z_low,t265_z_high,flag_t,0x5b])
         #transdata=bytearray([0xb3,0xb3, t265_x_high,t265_x_low,t265_y_high,t265_y_low,t265_z_low,t265_z_high,flag_t,0x5b])
-        print(transdata)
+        #print(transdata)
         self.serial_port.write(transdata)
         #print(transdata)
         time.sleep(0.002)
@@ -96,10 +96,6 @@ def quaternion_to_euler(qw,qx,qy,qz):
 
     return roll_x, pitch_y, yaw_z
 
-# 示例
-quaternion = (0.7071, 0.0, 0.7071, 0.0)  # 示例四元数
-euler_angles = quaternion_to_euler(quaternion)
-print("欧拉角 (roll, pitch, yaw):", euler_angles)
 
 
 class SubscriberNode(Node):
@@ -127,6 +123,8 @@ class SubscriberNode(Node):
             TFMessage, "/tf", self.T2_listener_callback, 10)       # 创建订阅者对象（消息类型、话题名、订阅者回调函数、队列长度
         self.sub_d435 = self.create_subscription(\
             ObjectPosition, "/d435_object_position", self.listener_callback_d435, 10)       # 创建订阅者对象（消息类型、话题名、订阅者回调函数、队列长度
+        self.sub_usb  = self.create_subscription(\
+            ObjectPosition,'/usb_object_position',self.listener_callback_usb,10)
         self.tim = self.create_timer(0.5, self.timer_callback) #to see if data is right
         
         
@@ -184,18 +182,32 @@ class SubscriberNode(Node):
         self.d435_z=msg.z
         self.flag_d=msg.f
         print("2",msg.x)
-        self.get_logger().info('Target Position: "(%d,%d,%d)"' % (self.d435_x[0], self.d435_y[0],self.d435_z[0]))
+        #self.get_logger().info('Target Position: "(%d,%d,%d)"' % (self.d435_x[0], self.d435_y[0],self.d435_z[0]))
         self.get_world_point()
         
     def get_world_point(self):
         #只考虑yaw角
         #self.serial.Send_message(self.d435_x,self.d435_y,self.d435_z,self.flag_d)
-        
+        yaw = self.euler[2]*np.pi/180
         x_d = np.array([self.d435_x[0],self.d435_y[0],self.d435_z[0]])
-        self.get_logger().info(str(self.rot))
-        x_w = np.dot(self.rot,x_d) + self.t2v
+        #self.get_logger().info(str(self.rot))
+        
+        
         #最后为了和机身坐标统一，注意要减去l0，
-        self.get_logger().info("world: %f, %f, %f" % (x_w[0], x_w[1], x_w[2]))
+        self.get_logger().info ("t265坐标反馈: %d, %d, %d"%(self.t2x*100,self.t2y*100,self.t2x*100))
+        self.get_logger().info("t265坐标系下的目标点: %d, %d, %d" % (x_d[0]/10, x_d[1]/10, x_d[2]/10))
+        x_w = x_d[0]*np.cos(yaw) - x_d[1]*np.sin(yaw) + self.t2x*1000 +262#m?cm?
+        y_w = x_d[0]*np.sin(yaw) + x_d[1]*np.cos(yaw) + self.t2y*1000
+       
+        self.get_logger().info('计算过程_x: "(%d,%d,%f)"' % (x_d[0]*np.cos(yaw)/10, x_d[1]*np.sin(yaw)/10,self.t2x*100))
+        self.get_logger().info("最终得到的坐标:[%d, %d]cm" % (x_w/10, y_w/10))
+        
+    def listener_callback_usb(self,msg):
+        self.usb_x=msg.x
+        self.usb_y=msg.y
+        self.flag_u=msg.f
+        print("3",msg.x)
+        self.get_logger().info('Target Position: "(%d,%d,%d)"' % (self.usb_x[0], self.usb_x[0],self.usb_x[0]))
         
 
 def main(args=None):                                 # ROS2节点主入口main函数
