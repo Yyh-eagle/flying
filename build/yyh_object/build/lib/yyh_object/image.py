@@ -46,20 +46,12 @@ class ImageSubscriber(Node):
         
         self.task_state=-1# the state machine
         self.d435_location = 1
-        ######################确认相机内参########################
-        # 1280*720 D435i 
-        self.fx = 912.0516357421875
-        self.fy = 911.5665283203125
-        self.ppx =649.6558837890625
-        self.ppy =377.07421875
 
-      
-        
         self.cv_bridge = CvBridge()# 创建一个图像转换对象，用于OpenCV图像与ROS的图像消息的互相转换
         self.colord435i = None
         self.depthd435i = None
         self.intrinsics =None
-        self.usb = cv2.VideoCapture(0)#little usb
+        #self.usb = cv2.VideoCapture(0)#little usb
         
         ########################################pub#########################################
         self.pub_d435 = self.create_publisher(
@@ -111,10 +103,11 @@ class ImageSubscriber(Node):
         
         self.get_logger().info('')     # 输出日志信息，提示已进入回调函数
         self.colord435i = self.cv_bridge.imgmsg_to_cv2(data, 'bgr8')
-        _,self.usb_frame = self.usb.read()
-        if self.colord435i is not None and self.depthd435i is not None and self.intrinsics is not None and self.usb_frame is not None:
+        #_,self.usb_frame = self.usb.read()
+        #if self.colord435i is not None and self.depthd435i is not None and self.intrinsics is not None and self.usb_frame is not None:
+        if self.colord435i is not None and self.depthd435i is not None and self.intrinsics is not None :
             self.locate_yolo_d4(self.colord435i,self.depthd435i)
-            self.locate_yolo_d4
+            
             
 ##########################################################################################################################################################33
     def locate_yolo_d4(self,color_image,depth_image):
@@ -226,10 +219,7 @@ class ImageSubscriber(Node):
 
     
 
-        
 
-        
- 
 def main(args=None):                            # ROS2节点主入口main函数()
     rclpy.init(args=args)                       # ROS2 Python接口初始化
     node = ImageSubscriber("image")  # 创建ROS2节点对象并进行初始化

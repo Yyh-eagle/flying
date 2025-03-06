@@ -21,7 +21,7 @@ def generate_launch_description():
    image_node = IncludeLaunchDescription(
       PythonLaunchDescriptionSource([os.path.join(
          get_package_share_directory('yyh_object'), 'launch'),
-         '/image.py'])
+         '/image_launch.py'])
       )
    
    return LaunchDescription([

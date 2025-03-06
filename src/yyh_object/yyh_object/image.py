@@ -51,7 +51,7 @@ class ImageSubscriber(Node):
         self.colord435i = None
         self.depthd435i = None
         self.intrinsics =None
-        self.usb = cv2.VideoCapture(0)#little usb
+        #self.usb = cv2.VideoCapture(0)#little usb
         
         ########################################pub#########################################
         self.pub_d435 = self.create_publisher(
@@ -103,10 +103,11 @@ class ImageSubscriber(Node):
         
         self.get_logger().info('')     # 输出日志信息，提示已进入回调函数
         self.colord435i = self.cv_bridge.imgmsg_to_cv2(data, 'bgr8')
-        _,self.usb_frame = self.usb.read()
-        if self.colord435i is not None and self.depthd435i is not None and self.intrinsics is not None and self.usb_frame is not None:
+        #_,self.usb_frame = self.usb.read()
+        #if self.colord435i is not None and self.depthd435i is not None and self.intrinsics is not None and self.usb_frame is not None:
+        if self.colord435i is not None and self.depthd435i is not None and self.intrinsics is not None :
             self.locate_yolo_d4(self.colord435i,self.depthd435i)
-            self.locate_yolo_d4
+            
             
 ##########################################################################################################################################################33
     def locate_yolo_d4(self,color_image,depth_image):
