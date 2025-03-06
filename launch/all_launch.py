@@ -27,5 +27,5 @@ def generate_launch_description():
    return LaunchDescription([
       tf_node,
       realsense_node,
-      #image_node
+      image_node
    ])

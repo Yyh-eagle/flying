@@ -13,7 +13,7 @@ import math
 import time
 
 
-import pyzbar.pyzbar as pyzbar# 
+import pyzbar.pyzbar as pyzbar# 2dcode
 from ament_index_python.packages import get_package_share_directory
 from yolov5 import YOLOv5
 lower_red = np.array([0, 90, 128])      # 红色的HSV阈值下限
@@ -25,13 +25,14 @@ package_share_directory = get_package_share_directory('yolov5_ros2')
 
 class ImageSubscriber(Node):
     def __init__(self, name):
+        
         super().__init__(name)    
         
         self.pub_usb = self.create_publisher(
             ObjectPosition, "usb_object_position", 10)              # 创建发布者对象（消息类型、话题名、队列长度）
         
         #########################################yolo#########################################
-        
+        #No cuda so cpu
         self.declare_parameter("device", "cpu", ParameterDescriptor(
             name="device", description="calculate_device default:cpu optional:cuda:0"))
 
@@ -42,7 +43,7 @@ class ImageSubscriber(Node):
             name="image_topic", description=f"default: /image_raw"))
 
         self.declare_parameter("camera_info_topic", "/camera/camera_info", ParameterDescriptor(
-            name="camera_info_topic", description=f"default: /camera/camera_info"))
+            name="camera_info_topic", description=f"default: /camera/camera_info")) 
 
         # 默认从camera_info中读取参数,如果可以从话题接收到参数则覆盖文件中的参数
         self.declare_parameter("camera_info_file", f"{package_share_directory}/config/camera_info.yaml", ParameterDescriptor(
@@ -64,7 +65,6 @@ class ImageSubscriber(Node):
         # 创建定时器，每隔0.1秒调用一次 image_process
         self.timer = self.create_timer(0.01, self.image_process)
 
-        self.image_process()
         
         
     
