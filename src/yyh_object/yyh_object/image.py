@@ -13,7 +13,9 @@ import cv2                              # Opencv图像处理库
 import numpy as np                      # Python数值计算库
 import math
 
-
+import sys
+import os
+import datetime
 
 import pyzbar.pyzbar as pyzbar# 
 from ament_index_python.packages import get_package_share_directory
@@ -31,7 +33,7 @@ class ImageSubscriber(Node):
         super().__init__(name)    
         # ROS2节点父类初始化
         self.frame_cnt =0
-        
+        self.Init_video()
         
         #D435i接收
         self.sub_color = self.create_subscription(
@@ -51,7 +53,7 @@ class ImageSubscriber(Node):
         self.colord435i = None
         self.depthd435i = None
         self.intrinsics =None
-        #self.usb = cv2.VideoCapture(0)#little usb
+        self.usb = cv2.VideoCapture(6)#小相机
         
         ########################################pub#########################################
         self.pub_d435 = self.create_publisher(
@@ -103,10 +105,19 @@ class ImageSubscriber(Node):
         
         self.get_logger().info('')     # 输出日志信息，提示已进入回调函数
         self.colord435i = self.cv_bridge.imgmsg_to_cv2(data, 'bgr8')
-        #_,self.usb_frame = self.usb.read()
-        #if self.colord435i is not None and self.depthd435i is not None and self.intrinsics is not None and self.usb_frame is not None:
-        if self.colord435i is not None and self.depthd435i is not None and self.intrinsics is not None :
+        _,self.usb_frame = self.usb.read()
+        self.init_writers(self.colord435i, self.usb_frame)
+        try:
+            if frame1 is not None and self.writers['usb1'] is not None:
+                self.writers['usb1'].write(frame1)
+            if frame2 is not None and self.writers['usb2'] is not None:
+                self.writers['usb2'].write(frame2)
+        except Exception as e:
+            print(f"视频写入失败: {str(e)}")
+        if self.colord435i is not None and self.depthd435i is not None and self.intrinsics is not None and self.usb_frame is not None:
+        #if self.colord435i is not None and self.depthd435i is not None and self.intrinsics is not None :
             self.locate_yolo_d4(self.colord435i,self.depthd435i)
+            self.locate_yolo_usb(self.usb_frame)
             
             
 ##########################################################################################################################################################33
@@ -189,7 +200,7 @@ class ImageSubscriber(Node):
             position.x[0], position.y[0],position.z[0],position.f,position.kind = target_y,-target_x,0,flag_find,13
             print(position.x[0], position.y[0],position.z[0])
         self.pub_usb.publish(position)
-        cv2.imshow("color",color_image)                          # 使用OpenCV显示处理后的图像效果
+        cv2.imshow("usb",color_image)                          # 使用OpenCV显示处理后的图像效果
         cv2.waitKey(1)
         
     def yolo_recog(self,img,threshold):#yolo for d435i
@@ -215,8 +226,50 @@ class ImageSubscriber(Node):
                 result.append(pack)#turple
     
         return result
-   
 
+    def Init_video(self):
+        #视频初始化----------------------------------------
+        #录制视频代码
+        self.video_dir = os.path.join(os.path.dirname(__file__), 'saved_videos')
+        os.makedirs(self.video_dir, exist_ok=True)#生成目录
+
+        # 生成带时间戳的文件名
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        self.video_paths = {
+            'usb1': os.path.join(self.video_dir, f'usb1_{timestamp}.avi'),
+            'usb2': os.path.join(self.video_dir, f'usb2_{timestamp}.avi')
+        }
+        
+        # 视频写入器（稍后初始化）
+        self.writers = {
+            'usb1': None,
+            'usb2': None
+        }
+    #初始化视频写入器
+
+    def init_writers(self, frame1, frame2):
+        """根据第一帧初始化视频写入器"""
+        fourcc = cv2.VideoWriter_fourcc(*'XVID')  # 实例化视频编码器
+        
+        # 初始化usb1的写入器
+        if frame1 is not None and self.writers['usb1'] is None:#第一帧，必须要求self.writers['usb1'] is None
+            h, w = frame1.shape[:2]
+            self.writers['usb1'] = cv2.VideoWriter(
+                self.video_paths['usb1'], 
+                fourcc, 
+                20.0,  # 帧率（根据实际情况调整）
+                (w, h)
+            )
+        
+        # 初始化usb2的写入器
+        if frame2 is not None and self.writers['usb2'] is None:
+            h, w = frame2.shape[:2]
+            self.writers['usb2'] = cv2.VideoWriter(
+                self.video_paths['usb2'], 
+                fourcc,
+                20.0,  # 帧率（根据实际情况调整）
+                (w, h)
+            )
     
 
 

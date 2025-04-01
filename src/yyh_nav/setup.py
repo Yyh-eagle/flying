@@ -27,7 +27,8 @@ setup(
 
     entry_points={
         'console_scripts': [
-            'tft265 = yyh_nav.tft265:main'
+            'tft265 = yyh_nav.tft265:main',
+            't265_pose_test = yyh_nav.t265_pose_test:main '
         ],
     },
 )
