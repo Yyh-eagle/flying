@@ -106,6 +106,9 @@ CMakeFiles/learning_interface__rosidl_typesupport_c__pyext.dir/rosidl_generator_
  rosidl_generator_c/learning_interface/msg/detail/object_position__functions.h
  rosidl_generator_c/learning_interface/msg/detail/object_position__struct.h
  rosidl_generator_c/learning_interface/msg/detail/object_position__type_support.h
+ rosidl_generator_c/learning_interface/msg/detail/stm32__functions.h
+ rosidl_generator_c/learning_interface/msg/detail/stm32__struct.h
+ rosidl_generator_c/learning_interface/msg/detail/stm32__type_support.h
  rosidl_generator_c/learning_interface/msg/rosidl_generator_c__visibility_control.h
  rosidl_generator_c/learning_interface/srv/detail/add_two_ints__functions.h
  rosidl_generator_c/learning_interface/srv/detail/add_two_ints__struct.h

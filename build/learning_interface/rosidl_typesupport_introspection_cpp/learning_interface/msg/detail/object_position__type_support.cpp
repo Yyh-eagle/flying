@@ -37,80 +37,20 @@ void ObjectPosition_fini_function(void * message_memory)
   typed_message->~ObjectPosition();
 }
 
-size_t size_function__ObjectPosition__x(const void * untyped_member)
-{
-  (void)untyped_member;
-  return 6;
-}
-
-const void * get_const_function__ObjectPosition__x(const void * untyped_member, size_t index)
-{
-  const auto & member =
-    *reinterpret_cast<const std::array<int32_t, 6> *>(untyped_member);
-  return &member[index];
-}
-
-void * get_function__ObjectPosition__x(void * untyped_member, size_t index)
-{
-  auto & member =
-    *reinterpret_cast<std::array<int32_t, 6> *>(untyped_member);
-  return &member[index];
-}
-
-size_t size_function__ObjectPosition__y(const void * untyped_member)
-{
-  (void)untyped_member;
-  return 6;
-}
-
-const void * get_const_function__ObjectPosition__y(const void * untyped_member, size_t index)
-{
-  const auto & member =
-    *reinterpret_cast<const std::array<int32_t, 6> *>(untyped_member);
-  return &member[index];
-}
-
-void * get_function__ObjectPosition__y(void * untyped_member, size_t index)
-{
-  auto & member =
-    *reinterpret_cast<std::array<int32_t, 6> *>(untyped_member);
-  return &member[index];
-}
-
-size_t size_function__ObjectPosition__z(const void * untyped_member)
-{
-  (void)untyped_member;
-  return 6;
-}
-
-const void * get_const_function__ObjectPosition__z(const void * untyped_member, size_t index)
-{
-  const auto & member =
-    *reinterpret_cast<const std::array<int32_t, 6> *>(untyped_member);
-  return &member[index];
-}
-
-void * get_function__ObjectPosition__z(void * untyped_member, size_t index)
-{
-  auto & member =
-    *reinterpret_cast<std::array<int32_t, 6> *>(untyped_member);
-  return &member[index];
-}
-
 static const ::rosidl_typesupport_introspection_cpp::MessageMember ObjectPosition_message_member_array[5] = {
   {
     "x",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
-    true,  // is array
-    6,  // array size
+    false,  // is array
+    0,  // array size
     false,  // is upper bound
     offsetof(learning_interface::msg::ObjectPosition, x),  // bytes offset in struct
     nullptr,  // default value
-    size_function__ObjectPosition__x,  // size() function pointer
-    get_const_function__ObjectPosition__x,  // get_const(index) function pointer
-    get_function__ObjectPosition__x,  // get(index) function pointer
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
     nullptr  // resize(index) function pointer
   },
   {
@@ -118,14 +58,14 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember ObjectPositio
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
-    true,  // is array
-    6,  // array size
+    false,  // is array
+    0,  // array size
     false,  // is upper bound
     offsetof(learning_interface::msg::ObjectPosition, y),  // bytes offset in struct
     nullptr,  // default value
-    size_function__ObjectPosition__y,  // size() function pointer
-    get_const_function__ObjectPosition__y,  // get_const(index) function pointer
-    get_function__ObjectPosition__y,  // get(index) function pointer
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
     nullptr  // resize(index) function pointer
   },
   {
@@ -133,14 +73,14 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember ObjectPositio
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
-    true,  // is array
-    6,  // array size
+    false,  // is array
+    0,  // array size
     false,  // is upper bound
     offsetof(learning_interface::msg::ObjectPosition, z),  // bytes offset in struct
     nullptr,  // default value
-    size_function__ObjectPosition__z,  // size() function pointer
-    get_const_function__ObjectPosition__z,  // get_const(index) function pointer
-    get_function__ObjectPosition__z,  // get(index) function pointer
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
     nullptr  // resize(index) function pointer
   },
   {

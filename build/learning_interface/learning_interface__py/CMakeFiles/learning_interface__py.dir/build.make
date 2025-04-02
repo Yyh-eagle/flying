@@ -58,6 +58,7 @@ learning_interface__py/CMakeFiles/learning_interface__py: rosidl_generator_py/le
 learning_interface__py/CMakeFiles/learning_interface__py: rosidl_generator_py/learning_interface/_learning_interface_s.ep.rosidl_typesupport_c.c
 learning_interface__py/CMakeFiles/learning_interface__py: rosidl_generator_py/learning_interface/msg/_object_position.py
 learning_interface__py/CMakeFiles/learning_interface__py: rosidl_generator_py/learning_interface/msg/_my_state.py
+learning_interface__py/CMakeFiles/learning_interface__py: rosidl_generator_py/learning_interface/msg/_stm32.py
 learning_interface__py/CMakeFiles/learning_interface__py: rosidl_generator_py/learning_interface/srv/_add_two_ints.py
 learning_interface__py/CMakeFiles/learning_interface__py: rosidl_generator_py/learning_interface/srv/_get_object_position.py
 learning_interface__py/CMakeFiles/learning_interface__py: rosidl_generator_py/learning_interface/action/_move_circle.py
@@ -66,6 +67,7 @@ learning_interface__py/CMakeFiles/learning_interface__py: rosidl_generator_py/le
 learning_interface__py/CMakeFiles/learning_interface__py: rosidl_generator_py/learning_interface/action/__init__.py
 learning_interface__py/CMakeFiles/learning_interface__py: rosidl_generator_py/learning_interface/msg/_object_position_s.c
 learning_interface__py/CMakeFiles/learning_interface__py: rosidl_generator_py/learning_interface/msg/_my_state_s.c
+learning_interface__py/CMakeFiles/learning_interface__py: rosidl_generator_py/learning_interface/msg/_stm32_s.c
 learning_interface__py/CMakeFiles/learning_interface__py: rosidl_generator_py/learning_interface/srv/_add_two_ints_s.c
 learning_interface__py/CMakeFiles/learning_interface__py: rosidl_generator_py/learning_interface/srv/_get_object_position_s.c
 learning_interface__py/CMakeFiles/learning_interface__py: rosidl_generator_py/learning_interface/action/_move_circle_s.c
@@ -86,6 +88,7 @@ rosidl_generator_py/learning_interface/_learning_interface_s.ep.rosidl_typesuppo
 rosidl_generator_py/learning_interface/_learning_interface_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/foxy/share/rosidl_generator_py/resource/_srv.py.em
 rosidl_generator_py/learning_interface/_learning_interface_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/learning_interface/msg/ObjectPosition.idl
 rosidl_generator_py/learning_interface/_learning_interface_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/learning_interface/msg/MyState.idl
+rosidl_generator_py/learning_interface/_learning_interface_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/learning_interface/msg/STM32.idl
 rosidl_generator_py/learning_interface/_learning_interface_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/learning_interface/srv/AddTwoInts.idl
 rosidl_generator_py/learning_interface/_learning_interface_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/learning_interface/srv/GetObjectPosition.idl
 rosidl_generator_py/learning_interface/_learning_interface_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/learning_interface/action/MoveCircle.idl
@@ -111,6 +114,9 @@ rosidl_generator_py/learning_interface/msg/_object_position.py: rosidl_generator
 rosidl_generator_py/learning_interface/msg/_my_state.py: rosidl_generator_py/learning_interface/_learning_interface_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/learning_interface/msg/_my_state.py
 
+rosidl_generator_py/learning_interface/msg/_stm32.py: rosidl_generator_py/learning_interface/_learning_interface_s.ep.rosidl_typesupport_fastrtps_c.c
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/learning_interface/msg/_stm32.py
+
 rosidl_generator_py/learning_interface/srv/_add_two_ints.py: rosidl_generator_py/learning_interface/_learning_interface_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/learning_interface/srv/_add_two_ints.py
 
@@ -135,6 +141,9 @@ rosidl_generator_py/learning_interface/msg/_object_position_s.c: rosidl_generato
 rosidl_generator_py/learning_interface/msg/_my_state_s.c: rosidl_generator_py/learning_interface/_learning_interface_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/learning_interface/msg/_my_state_s.c
 
+rosidl_generator_py/learning_interface/msg/_stm32_s.c: rosidl_generator_py/learning_interface/_learning_interface_s.ep.rosidl_typesupport_fastrtps_c.c
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/learning_interface/msg/_stm32_s.c
+
 rosidl_generator_py/learning_interface/srv/_add_two_ints_s.c: rosidl_generator_py/learning_interface/_learning_interface_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/learning_interface/srv/_add_two_ints_s.c
 
@@ -150,6 +159,7 @@ learning_interface__py: rosidl_generator_py/learning_interface/_learning_interfa
 learning_interface__py: rosidl_generator_py/learning_interface/_learning_interface_s.ep.rosidl_typesupport_c.c
 learning_interface__py: rosidl_generator_py/learning_interface/msg/_object_position.py
 learning_interface__py: rosidl_generator_py/learning_interface/msg/_my_state.py
+learning_interface__py: rosidl_generator_py/learning_interface/msg/_stm32.py
 learning_interface__py: rosidl_generator_py/learning_interface/srv/_add_two_ints.py
 learning_interface__py: rosidl_generator_py/learning_interface/srv/_get_object_position.py
 learning_interface__py: rosidl_generator_py/learning_interface/action/_move_circle.py
@@ -158,6 +168,7 @@ learning_interface__py: rosidl_generator_py/learning_interface/srv/__init__.py
 learning_interface__py: rosidl_generator_py/learning_interface/action/__init__.py
 learning_interface__py: rosidl_generator_py/learning_interface/msg/_object_position_s.c
 learning_interface__py: rosidl_generator_py/learning_interface/msg/_my_state_s.c
+learning_interface__py: rosidl_generator_py/learning_interface/msg/_stm32_s.c
 learning_interface__py: rosidl_generator_py/learning_interface/srv/_add_two_ints_s.c
 learning_interface__py: rosidl_generator_py/learning_interface/srv/_get_object_position_s.c
 learning_interface__py: rosidl_generator_py/learning_interface/action/_move_circle_s.c

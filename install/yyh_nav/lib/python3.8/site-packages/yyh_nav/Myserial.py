@@ -21,10 +21,10 @@ class SerialPort():
 
     #初始化接受变量
     def init_receive_var(self):
-        self.ifArrive_int = None#是否飞到指定目标，镜头开始工作
-        self.task_id_int =None#是否完成当前任务
-        self.Task_state_int = None#任务状态机控制
-        self.D435_yaw_float =None#舵机的角度反
+        self.ifArrive_int = 0#是否飞到指定目标，镜头开始工作
+        self.task_id_int =0#是否完成当前任务
+        self.task_state_int = 0#任务状态机控制
+        self.d435_yaw_float =0.0#舵机的角度反
         self.Task_data3_float =None
         self.Task_data4_float = None
         self.Task_data5_float = None
@@ -56,8 +56,8 @@ class SerialPort():
         # 解析各浮点数字段（小端模式）
         self.ifArrive_int = struct.unpack('<i', data[0:4])[0]
         self.task_id_int = struct.unpack('<i', data[4:8])[0]
-        self.Task_state_int = struct.unpack('<i', data[8:12])[0]
-        self.D435_yaw_float = struct.unpack('<f', data[12:16])[0]
+        self.task_state_int = struct.unpack('<i', data[8:12])[0]
+        self.d435_yaw_float = struct.unpack('<f', data[12:16])[0]
         self.Task_data3_float = struct.unpack('<f', data[16:20])[0]
         self.Task_data4_float = struct.unpack('<f', data[20:24])[0]
         self.Task_data5_float = struct.unpack('<f', data[24:28])[0]
@@ -123,6 +123,8 @@ class SerialPort():
         self.t_flag_u = 0#T265是否工作
         self.d_flag_u = 0#D435i是否检测到目标
         self.c_flag_u = 0#小相机是否检测到目标
+        self.D435_aim_i  =0#d435i检测目标类别
+        self.c_aim_i = 0#小相机检测目标类别
 
   
 

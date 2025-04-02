@@ -45,22 +45,16 @@ learning_interface__msg__ObjectPosition__are_equal(const learning_interface__msg
     return false;
   }
   // x
-  for (size_t i = 0; i < 6; ++i) {
-    if (lhs->x[i] != rhs->x[i]) {
-      return false;
-    }
+  if (lhs->x != rhs->x) {
+    return false;
   }
   // y
-  for (size_t i = 0; i < 6; ++i) {
-    if (lhs->y[i] != rhs->y[i]) {
-      return false;
-    }
+  if (lhs->y != rhs->y) {
+    return false;
   }
   // z
-  for (size_t i = 0; i < 6; ++i) {
-    if (lhs->z[i] != rhs->z[i]) {
-      return false;
-    }
+  if (lhs->z != rhs->z) {
+    return false;
   }
   // f
   if (lhs->f != rhs->f) {
@@ -82,17 +76,11 @@ learning_interface__msg__ObjectPosition__copy(
     return false;
   }
   // x
-  for (size_t i = 0; i < 6; ++i) {
-    output->x[i] = input->x[i];
-  }
+  output->x = input->x;
   // y
-  for (size_t i = 0; i < 6; ++i) {
-    output->y[i] = input->y[i];
-  }
+  output->y = input->y;
   // z
-  for (size_t i = 0; i < 6; ++i) {
-    output->z[i] = input->z[i];
-  }
+  output->z = input->z;
   // f
   output->f = input->f;
   // kind

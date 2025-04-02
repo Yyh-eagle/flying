@@ -20,9 +20,9 @@ extern "C"
 // Struct defined in msg/ObjectPosition in the package learning_interface.
 typedef struct learning_interface__msg__ObjectPosition
 {
-  int32_t x[6];
-  int32_t y[6];
-  int32_t z[6];
+  int32_t x;
+  int32_t y;
+  int32_t z;
   int32_t f;
   int32_t kind;
 } learning_interface__msg__ObjectPosition;

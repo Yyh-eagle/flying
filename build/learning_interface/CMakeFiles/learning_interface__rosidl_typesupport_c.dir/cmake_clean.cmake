@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/learning_interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/learning_interface/action/move_circle__type_support.cpp.o"
   "CMakeFiles/learning_interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/learning_interface/msg/my_state__type_support.cpp.o"
   "CMakeFiles/learning_interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/learning_interface/msg/object_position__type_support.cpp.o"
+  "CMakeFiles/learning_interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/learning_interface/msg/stm32__type_support.cpp.o"
   "CMakeFiles/learning_interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/learning_interface/srv/add_two_ints__type_support.cpp.o"
   "CMakeFiles/learning_interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/learning_interface/srv/get_object_position__type_support.cpp.o"
   "liblearning_interface__rosidl_typesupport_c.pdb"
@@ -9,6 +10,7 @@ file(REMOVE_RECURSE
   "rosidl_typesupport_c/learning_interface/action/move_circle__type_support.cpp"
   "rosidl_typesupport_c/learning_interface/msg/my_state__type_support.cpp"
   "rosidl_typesupport_c/learning_interface/msg/object_position__type_support.cpp"
+  "rosidl_typesupport_c/learning_interface/msg/stm32__type_support.cpp"
   "rosidl_typesupport_c/learning_interface/srv/add_two_ints__type_support.cpp"
   "rosidl_typesupport_c/learning_interface/srv/get_object_position__type_support.cpp"
 )

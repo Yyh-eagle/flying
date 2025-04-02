@@ -25,6 +25,7 @@ find_package(rosidl_default_generators REQUIRED)
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/ObjectPosition.msg"
   "msg/MyState.msg"
+  "msg/STM32.msg"
   "srv/AddTwoInts.srv"
   "srv/GetObjectPosition.srv"
   "action/MoveCircle.action"

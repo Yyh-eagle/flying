@@ -72,6 +72,7 @@ rosidl_generator_c/learning_interface/msg/object_position.h: /opt/ros/foxy/share
 rosidl_generator_c/learning_interface/msg/object_position.h: /opt/ros/foxy/share/rosidl_generator_c/resource/srv__type_support.h.em
 rosidl_generator_c/learning_interface/msg/object_position.h: rosidl_adapter/learning_interface/msg/ObjectPosition.idl
 rosidl_generator_c/learning_interface/msg/object_position.h: rosidl_adapter/learning_interface/msg/MyState.idl
+rosidl_generator_c/learning_interface/msg/object_position.h: rosidl_adapter/learning_interface/msg/STM32.idl
 rosidl_generator_c/learning_interface/msg/object_position.h: rosidl_adapter/learning_interface/srv/AddTwoInts.idl
 rosidl_generator_c/learning_interface/msg/object_position.h: rosidl_adapter/learning_interface/srv/GetObjectPosition.idl
 rosidl_generator_c/learning_interface/msg/object_position.h: rosidl_adapter/learning_interface/action/MoveCircle.idl
@@ -105,6 +106,18 @@ rosidl_generator_c/learning_interface/msg/detail/my_state__struct.h: rosidl_gene
 
 rosidl_generator_c/learning_interface/msg/detail/my_state__type_support.h: rosidl_generator_c/learning_interface/msg/object_position.h
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/learning_interface/msg/detail/my_state__type_support.h
+
+rosidl_generator_c/learning_interface/msg/stm32.h: rosidl_generator_c/learning_interface/msg/object_position.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/learning_interface/msg/stm32.h
+
+rosidl_generator_c/learning_interface/msg/detail/stm32__functions.h: rosidl_generator_c/learning_interface/msg/object_position.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/learning_interface/msg/detail/stm32__functions.h
+
+rosidl_generator_c/learning_interface/msg/detail/stm32__struct.h: rosidl_generator_c/learning_interface/msg/object_position.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/learning_interface/msg/detail/stm32__struct.h
+
+rosidl_generator_c/learning_interface/msg/detail/stm32__type_support.h: rosidl_generator_c/learning_interface/msg/object_position.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/learning_interface/msg/detail/stm32__type_support.h
 
 rosidl_generator_c/learning_interface/srv/add_two_ints.h: rosidl_generator_c/learning_interface/msg/object_position.h
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/learning_interface/srv/add_two_ints.h
@@ -148,6 +161,9 @@ rosidl_generator_c/learning_interface/msg/detail/object_position__functions.c: r
 rosidl_generator_c/learning_interface/msg/detail/my_state__functions.c: rosidl_generator_c/learning_interface/msg/object_position.h
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/learning_interface/msg/detail/my_state__functions.c
 
+rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c: rosidl_generator_c/learning_interface/msg/object_position.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c
+
 rosidl_generator_c/learning_interface/srv/detail/add_two_ints__functions.c: rosidl_generator_c/learning_interface/msg/object_position.h
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/learning_interface/srv/detail/add_two_ints__functions.c
 
@@ -183,9 +199,22 @@ CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learnin
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/my_state__functions.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/yyh/ros2_ws/build/learning_interface/rosidl_generator_c/learning_interface/msg/detail/my_state__functions.c -o CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/my_state__functions.c.s
 
+CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.o: CMakeFiles/learning_interface__rosidl_generator_c.dir/flags.make
+CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.o: rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.o   -c /home/yyh/ros2_ws/build/learning_interface/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c
+
+CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/yyh/ros2_ws/build/learning_interface/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c > CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.i
+
+CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/yyh/ros2_ws/build/learning_interface/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c -o CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.s
+
 CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/srv/detail/add_two_ints__functions.c.o: CMakeFiles/learning_interface__rosidl_generator_c.dir/flags.make
 CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/srv/detail/add_two_ints__functions.c.o: rosidl_generator_c/learning_interface/srv/detail/add_two_ints__functions.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/srv/detail/add_two_ints__functions.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/srv/detail/add_two_ints__functions.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/srv/detail/add_two_ints__functions.c.o   -c /home/yyh/ros2_ws/build/learning_interface/rosidl_generator_c/learning_interface/srv/detail/add_two_ints__functions.c
 
 CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/srv/detail/add_two_ints__functions.c.i: cmake_force
@@ -198,7 +227,7 @@ CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learnin
 
 CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/srv/detail/get_object_position__functions.c.o: CMakeFiles/learning_interface__rosidl_generator_c.dir/flags.make
 CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/srv/detail/get_object_position__functions.c.o: rosidl_generator_c/learning_interface/srv/detail/get_object_position__functions.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/srv/detail/get_object_position__functions.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/srv/detail/get_object_position__functions.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/srv/detail/get_object_position__functions.c.o   -c /home/yyh/ros2_ws/build/learning_interface/rosidl_generator_c/learning_interface/srv/detail/get_object_position__functions.c
 
 CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/srv/detail/get_object_position__functions.c.i: cmake_force
@@ -211,7 +240,7 @@ CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learnin
 
 CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/action/detail/move_circle__functions.c.o: CMakeFiles/learning_interface__rosidl_generator_c.dir/flags.make
 CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/action/detail/move_circle__functions.c.o: rosidl_generator_c/learning_interface/action/detail/move_circle__functions.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/action/detail/move_circle__functions.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/action/detail/move_circle__functions.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/action/detail/move_circle__functions.c.o   -c /home/yyh/ros2_ws/build/learning_interface/rosidl_generator_c/learning_interface/action/detail/move_circle__functions.c
 
 CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/action/detail/move_circle__functions.c.i: cmake_force
@@ -226,6 +255,7 @@ CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learnin
 learning_interface__rosidl_generator_c_OBJECTS = \
 "CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/object_position__functions.c.o" \
 "CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/my_state__functions.c.o" \
+"CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.o" \
 "CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/srv/detail/add_two_ints__functions.c.o" \
 "CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/srv/detail/get_object_position__functions.c.o" \
 "CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/action/detail/move_circle__functions.c.o"
@@ -235,6 +265,7 @@ learning_interface__rosidl_generator_c_EXTERNAL_OBJECTS =
 
 liblearning_interface__rosidl_generator_c.so: CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/object_position__functions.c.o
 liblearning_interface__rosidl_generator_c.so: CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/my_state__functions.c.o
+liblearning_interface__rosidl_generator_c.so: CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.o
 liblearning_interface__rosidl_generator_c.so: CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/srv/detail/add_two_ints__functions.c.o
 liblearning_interface__rosidl_generator_c.so: CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/srv/detail/get_object_position__functions.c.o
 liblearning_interface__rosidl_generator_c.so: CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/action/detail/move_circle__functions.c.o
@@ -262,7 +293,7 @@ liblearning_interface__rosidl_generator_c.so: /opt/ros/foxy/lib/librosidl_runtim
 liblearning_interface__rosidl_generator_c.so: /opt/ros/foxy/lib/librcpputils.so
 liblearning_interface__rosidl_generator_c.so: /opt/ros/foxy/lib/librcutils.so
 liblearning_interface__rosidl_generator_c.so: CMakeFiles/learning_interface__rosidl_generator_c.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking C shared library liblearning_interface__rosidl_generator_c.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C shared library liblearning_interface__rosidl_generator_c.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/learning_interface__rosidl_generator_c.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -282,6 +313,10 @@ CMakeFiles/learning_interface__rosidl_generator_c.dir/depend: rosidl_generator_c
 CMakeFiles/learning_interface__rosidl_generator_c.dir/depend: rosidl_generator_c/learning_interface/msg/detail/my_state__functions.h
 CMakeFiles/learning_interface__rosidl_generator_c.dir/depend: rosidl_generator_c/learning_interface/msg/detail/my_state__struct.h
 CMakeFiles/learning_interface__rosidl_generator_c.dir/depend: rosidl_generator_c/learning_interface/msg/detail/my_state__type_support.h
+CMakeFiles/learning_interface__rosidl_generator_c.dir/depend: rosidl_generator_c/learning_interface/msg/stm32.h
+CMakeFiles/learning_interface__rosidl_generator_c.dir/depend: rosidl_generator_c/learning_interface/msg/detail/stm32__functions.h
+CMakeFiles/learning_interface__rosidl_generator_c.dir/depend: rosidl_generator_c/learning_interface/msg/detail/stm32__struct.h
+CMakeFiles/learning_interface__rosidl_generator_c.dir/depend: rosidl_generator_c/learning_interface/msg/detail/stm32__type_support.h
 CMakeFiles/learning_interface__rosidl_generator_c.dir/depend: rosidl_generator_c/learning_interface/srv/add_two_ints.h
 CMakeFiles/learning_interface__rosidl_generator_c.dir/depend: rosidl_generator_c/learning_interface/srv/detail/add_two_ints__functions.h
 CMakeFiles/learning_interface__rosidl_generator_c.dir/depend: rosidl_generator_c/learning_interface/srv/detail/add_two_ints__struct.h
@@ -296,6 +331,7 @@ CMakeFiles/learning_interface__rosidl_generator_c.dir/depend: rosidl_generator_c
 CMakeFiles/learning_interface__rosidl_generator_c.dir/depend: rosidl_generator_c/learning_interface/action/detail/move_circle__type_support.h
 CMakeFiles/learning_interface__rosidl_generator_c.dir/depend: rosidl_generator_c/learning_interface/msg/detail/object_position__functions.c
 CMakeFiles/learning_interface__rosidl_generator_c.dir/depend: rosidl_generator_c/learning_interface/msg/detail/my_state__functions.c
+CMakeFiles/learning_interface__rosidl_generator_c.dir/depend: rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c
 CMakeFiles/learning_interface__rosidl_generator_c.dir/depend: rosidl_generator_c/learning_interface/srv/detail/add_two_ints__functions.c
 CMakeFiles/learning_interface__rosidl_generator_c.dir/depend: rosidl_generator_c/learning_interface/srv/detail/get_object_position__functions.c
 CMakeFiles/learning_interface__rosidl_generator_c.dir/depend: rosidl_generator_c/learning_interface/action/detail/move_circle__functions.c

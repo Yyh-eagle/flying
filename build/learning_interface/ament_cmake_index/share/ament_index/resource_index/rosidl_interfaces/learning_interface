@@ -4,6 +4,8 @@ msg/MyState.idl
 msg/MyState.msg
 msg/ObjectPosition.idl
 msg/ObjectPosition.msg
+msg/STM32.idl
+msg/STM32.msg
 srv/AddTwoInts.idl
 srv/AddTwoInts.srv
 srv/AddTwoInts_Request.msg

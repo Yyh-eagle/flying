@@ -16,5 +16,6 @@
         "/home/yyh/ros2_ws/install/realsense2_camera_msgs/lib/python3.8/site-packages",
         "/home/yyh/ros2_ws/install/learning_interface/lib/python3.8/site-packages",
         "/opt/ros/foxy/lib/python3.8/site-packages"
-    ]
+    ],
+    "ros.distro": "foxy"
 }

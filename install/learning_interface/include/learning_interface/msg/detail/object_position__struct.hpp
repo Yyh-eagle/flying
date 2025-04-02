@@ -37,25 +37,23 @@ struct ObjectPosition_
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
     {
-      std::fill<typename std::array<int32_t, 6>::iterator, int32_t>(this->x.begin(), this->x.end(), 0l);
-      std::fill<typename std::array<int32_t, 6>::iterator, int32_t>(this->y.begin(), this->y.end(), 0l);
-      std::fill<typename std::array<int32_t, 6>::iterator, int32_t>(this->z.begin(), this->z.end(), 0l);
+      this->x = 0l;
+      this->y = 0l;
+      this->z = 0l;
       this->f = 0l;
       this->kind = 0l;
     }
   }
 
   explicit ObjectPosition_(const ContainerAllocator & _alloc, rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
-  : x(_alloc),
-    y(_alloc),
-    z(_alloc)
   {
+    (void)_alloc;
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
     {
-      std::fill<typename std::array<int32_t, 6>::iterator, int32_t>(this->x.begin(), this->x.end(), 0l);
-      std::fill<typename std::array<int32_t, 6>::iterator, int32_t>(this->y.begin(), this->y.end(), 0l);
-      std::fill<typename std::array<int32_t, 6>::iterator, int32_t>(this->z.begin(), this->z.end(), 0l);
+      this->x = 0l;
+      this->y = 0l;
+      this->z = 0l;
       this->f = 0l;
       this->kind = 0l;
     }
@@ -63,13 +61,13 @@ struct ObjectPosition_
 
   // field types and members
   using _x_type =
-    std::array<int32_t, 6>;
+    int32_t;
   _x_type x;
   using _y_type =
-    std::array<int32_t, 6>;
+    int32_t;
   _y_type y;
   using _z_type =
-    std::array<int32_t, 6>;
+    int32_t;
   _z_type z;
   using _f_type =
     int32_t;
@@ -80,19 +78,19 @@ struct ObjectPosition_
 
   // setters for named parameter idiom
   Type & set__x(
-    const std::array<int32_t, 6> & _arg)
+    const int32_t & _arg)
   {
     this->x = _arg;
     return *this;
   }
   Type & set__y(
-    const std::array<int32_t, 6> & _arg)
+    const int32_t & _arg)
   {
     this->y = _arg;
     return *this;
   }
   Type & set__z(
-    const std::array<int32_t, 6> & _arg)
+    const int32_t & _arg)
   {
     this->z = _arg;
     return *this;

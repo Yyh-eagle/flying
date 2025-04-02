@@ -83,9 +83,22 @@ CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/msg/_my_state_s.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/yyh/ros2_ws/build/learning_interface/rosidl_generator_py/learning_interface/msg/_my_state_s.c -o CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/msg/_my_state_s.c.s
 
+CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/msg/_stm32_s.c.o: CMakeFiles/learning_interface__python.dir/flags.make
+CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/msg/_stm32_s.c.o: rosidl_generator_py/learning_interface/msg/_stm32_s.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/msg/_stm32_s.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/msg/_stm32_s.c.o   -c /home/yyh/ros2_ws/build/learning_interface/rosidl_generator_py/learning_interface/msg/_stm32_s.c
+
+CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/msg/_stm32_s.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/msg/_stm32_s.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/yyh/ros2_ws/build/learning_interface/rosidl_generator_py/learning_interface/msg/_stm32_s.c > CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/msg/_stm32_s.c.i
+
+CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/msg/_stm32_s.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/msg/_stm32_s.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/yyh/ros2_ws/build/learning_interface/rosidl_generator_py/learning_interface/msg/_stm32_s.c -o CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/msg/_stm32_s.c.s
+
 CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/srv/_add_two_ints_s.c.o: CMakeFiles/learning_interface__python.dir/flags.make
 CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/srv/_add_two_ints_s.c.o: rosidl_generator_py/learning_interface/srv/_add_two_ints_s.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/srv/_add_two_ints_s.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/srv/_add_two_ints_s.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/srv/_add_two_ints_s.c.o   -c /home/yyh/ros2_ws/build/learning_interface/rosidl_generator_py/learning_interface/srv/_add_two_ints_s.c
 
 CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/srv/_add_two_ints_s.c.i: cmake_force
@@ -98,7 +111,7 @@ CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface
 
 CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/srv/_get_object_position_s.c.o: CMakeFiles/learning_interface__python.dir/flags.make
 CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/srv/_get_object_position_s.c.o: rosidl_generator_py/learning_interface/srv/_get_object_position_s.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/srv/_get_object_position_s.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/srv/_get_object_position_s.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/srv/_get_object_position_s.c.o   -c /home/yyh/ros2_ws/build/learning_interface/rosidl_generator_py/learning_interface/srv/_get_object_position_s.c
 
 CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/srv/_get_object_position_s.c.i: cmake_force
@@ -111,7 +124,7 @@ CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface
 
 CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/action/_move_circle_s.c.o: CMakeFiles/learning_interface__python.dir/flags.make
 CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/action/_move_circle_s.c.o: rosidl_generator_py/learning_interface/action/_move_circle_s.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/action/_move_circle_s.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/action/_move_circle_s.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/action/_move_circle_s.c.o   -c /home/yyh/ros2_ws/build/learning_interface/rosidl_generator_py/learning_interface/action/_move_circle_s.c
 
 CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/action/_move_circle_s.c.i: cmake_force
@@ -126,6 +139,7 @@ CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface
 learning_interface__python_OBJECTS = \
 "CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/msg/_object_position_s.c.o" \
 "CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/msg/_my_state_s.c.o" \
+"CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/msg/_stm32_s.c.o" \
 "CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/srv/_add_two_ints_s.c.o" \
 "CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/srv/_get_object_position_s.c.o" \
 "CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/action/_move_circle_s.c.o"
@@ -135,6 +149,7 @@ learning_interface__python_EXTERNAL_OBJECTS =
 
 rosidl_generator_py/learning_interface/liblearning_interface__python.so: CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/msg/_object_position_s.c.o
 rosidl_generator_py/learning_interface/liblearning_interface__python.so: CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/msg/_my_state_s.c.o
+rosidl_generator_py/learning_interface/liblearning_interface__python.so: CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/msg/_stm32_s.c.o
 rosidl_generator_py/learning_interface/liblearning_interface__python.so: CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/srv/_add_two_ints_s.c.o
 rosidl_generator_py/learning_interface/liblearning_interface__python.so: CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/srv/_get_object_position_s.c.o
 rosidl_generator_py/learning_interface/liblearning_interface__python.so: CMakeFiles/learning_interface__python.dir/rosidl_generator_py/learning_interface/action/_move_circle_s.c.o
@@ -168,7 +183,7 @@ rosidl_generator_py/learning_interface/liblearning_interface__python.so: /opt/ro
 rosidl_generator_py/learning_interface/liblearning_interface__python.so: /opt/ros/foxy/lib/librcpputils.so
 rosidl_generator_py/learning_interface/liblearning_interface__python.so: /opt/ros/foxy/lib/librcutils.so
 rosidl_generator_py/learning_interface/liblearning_interface__python.so: CMakeFiles/learning_interface__python.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C shared library rosidl_generator_py/learning_interface/liblearning_interface__python.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking C shared library rosidl_generator_py/learning_interface/liblearning_interface__python.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/learning_interface__python.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

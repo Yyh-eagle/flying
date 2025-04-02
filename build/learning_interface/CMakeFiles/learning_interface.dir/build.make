@@ -55,6 +55,7 @@ include CMakeFiles/learning_interface.dir/progress.make
 
 CMakeFiles/learning_interface: /home/yyh/ros2_ws/src/learning_interface/msg/ObjectPosition.msg
 CMakeFiles/learning_interface: /home/yyh/ros2_ws/src/learning_interface/msg/MyState.msg
+CMakeFiles/learning_interface: /home/yyh/ros2_ws/src/learning_interface/msg/STM32.msg
 CMakeFiles/learning_interface: /home/yyh/ros2_ws/src/learning_interface/srv/AddTwoInts.srv
 CMakeFiles/learning_interface: rosidl_cmake/srv/AddTwoInts_Request.msg
 CMakeFiles/learning_interface: rosidl_cmake/srv/AddTwoInts_Response.msg

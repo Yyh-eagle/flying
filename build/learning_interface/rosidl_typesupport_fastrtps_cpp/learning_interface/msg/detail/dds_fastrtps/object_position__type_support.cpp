@@ -33,17 +33,11 @@ cdr_serialize(
   eprosima::fastcdr::Cdr & cdr)
 {
   // Member: x
-  {
-    cdr << ros_message.x;
-  }
+  cdr << ros_message.x;
   // Member: y
-  {
-    cdr << ros_message.y;
-  }
+  cdr << ros_message.y;
   // Member: z
-  {
-    cdr << ros_message.z;
-  }
+  cdr << ros_message.z;
   // Member: f
   cdr << ros_message.f;
   // Member: kind
@@ -58,19 +52,13 @@ cdr_deserialize(
   learning_interface::msg::ObjectPosition & ros_message)
 {
   // Member: x
-  {
-    cdr >> ros_message.x;
-  }
+  cdr >> ros_message.x;
 
   // Member: y
-  {
-    cdr >> ros_message.y;
-  }
+  cdr >> ros_message.y;
 
   // Member: z
-  {
-    cdr >> ros_message.z;
-  }
+  cdr >> ros_message.z;
 
   // Member: f
   cdr >> ros_message.f;
@@ -96,23 +84,20 @@ get_serialized_size(
 
   // Member: x
   {
-    size_t array_size = 6;
-    size_t item_size = sizeof(ros_message.x[0]);
-    current_alignment += array_size * item_size +
+    size_t item_size = sizeof(ros_message.x);
+    current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
   // Member: y
   {
-    size_t array_size = 6;
-    size_t item_size = sizeof(ros_message.y[0]);
-    current_alignment += array_size * item_size +
+    size_t item_size = sizeof(ros_message.y);
+    current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
   // Member: z
   {
-    size_t array_size = 6;
-    size_t item_size = sizeof(ros_message.z[0]);
-    current_alignment += array_size * item_size +
+    size_t item_size = sizeof(ros_message.z);
+    current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
   // Member: f
@@ -148,7 +133,7 @@ max_serialized_size_ObjectPosition(
 
   // Member: x
   {
-    size_t array_size = 6;
+    size_t array_size = 1;
 
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
@@ -156,7 +141,7 @@ max_serialized_size_ObjectPosition(
 
   // Member: y
   {
-    size_t array_size = 6;
+    size_t array_size = 1;
 
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
@@ -164,7 +149,7 @@ max_serialized_size_ObjectPosition(
 
   // Member: z
   {
-    size_t array_size = 6;
+    size_t array_size = 1;
 
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));

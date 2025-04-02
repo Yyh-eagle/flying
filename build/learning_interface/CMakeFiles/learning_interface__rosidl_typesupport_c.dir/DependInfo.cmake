@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_c/learning_interface/action/move_circle__type_support.cpp" "/home/yyh/ros2_ws/build/learning_interface/CMakeFiles/learning_interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/learning_interface/action/move_circle__type_support.cpp.o"
   "/home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_c/learning_interface/msg/my_state__type_support.cpp" "/home/yyh/ros2_ws/build/learning_interface/CMakeFiles/learning_interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/learning_interface/msg/my_state__type_support.cpp.o"
   "/home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_c/learning_interface/msg/object_position__type_support.cpp" "/home/yyh/ros2_ws/build/learning_interface/CMakeFiles/learning_interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/learning_interface/msg/object_position__type_support.cpp.o"
+  "/home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_c/learning_interface/msg/stm32__type_support.cpp" "/home/yyh/ros2_ws/build/learning_interface/CMakeFiles/learning_interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/learning_interface/msg/stm32__type_support.cpp.o"
   "/home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_c/learning_interface/srv/add_two_ints__type_support.cpp" "/home/yyh/ros2_ws/build/learning_interface/CMakeFiles/learning_interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/learning_interface/srv/add_two_ints__type_support.cpp.o"
   "/home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_c/learning_interface/srv/get_object_position__type_support.cpp" "/home/yyh/ros2_ws/build/learning_interface/CMakeFiles/learning_interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/learning_interface/srv/get_object_position__type_support.cpp.o"
   )
@@ -30,6 +31,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 set(CMAKE_MULTIPLE_OUTPUT_PAIRS
   "/home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_c/learning_interface/action/move_circle__type_support.cpp" "/home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_c/learning_interface/msg/object_position__type_support.cpp"
   "/home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_c/learning_interface/msg/my_state__type_support.cpp" "/home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_c/learning_interface/msg/object_position__type_support.cpp"
+  "/home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_c/learning_interface/msg/stm32__type_support.cpp" "/home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_c/learning_interface/msg/object_position__type_support.cpp"
   "/home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_c/learning_interface/srv/add_two_ints__type_support.cpp" "/home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_c/learning_interface/msg/object_position__type_support.cpp"
   "/home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_c/learning_interface/srv/get_object_position__type_support.cpp" "/home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_c/learning_interface/msg/object_position__type_support.cpp"
   )

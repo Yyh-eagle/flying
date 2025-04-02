@@ -43,6 +43,18 @@ CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learnin
 CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/object_position__functions.c.o: rosidl_generator_c/learning_interface/msg/detail/object_position__struct.h
 CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/object_position__functions.c.o: rosidl_generator_c/learning_interface/msg/rosidl_generator_c__visibility_control.h
 
+CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.o: rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c
+CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.o: /opt/ros/foxy/include/rcutils/allocator.h
+CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.o: /opt/ros/foxy/include/rcutils/macros.h
+CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.o: /opt/ros/foxy/include/rcutils/testing/fault_injection.h
+CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.o: /opt/ros/foxy/include/rcutils/types/rcutils_ret.h
+CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.o: /opt/ros/foxy/include/rcutils/visibility_control.h
+CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.o: /opt/ros/foxy/include/rcutils/visibility_control_macros.h
+CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.o: /opt/ros/foxy/include/rosidl_runtime_c/visibility_control.h
+CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.o: rosidl_generator_c/learning_interface/msg/detail/stm32__functions.h
+CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.o: rosidl_generator_c/learning_interface/msg/detail/stm32__struct.h
+CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/msg/detail/stm32__functions.c.o: rosidl_generator_c/learning_interface/msg/rosidl_generator_c__visibility_control.h
+
 CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/srv/detail/add_two_ints__functions.c.o: rosidl_generator_c/learning_interface/srv/detail/add_two_ints__functions.c
 CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/srv/detail/add_two_ints__functions.c.o: /opt/ros/foxy/include/rcutils/allocator.h
 CMakeFiles/learning_interface__rosidl_generator_c.dir/rosidl_generator_c/learning_interface/srv/detail/add_two_ints__functions.c.o: /opt/ros/foxy/include/rcutils/macros.h

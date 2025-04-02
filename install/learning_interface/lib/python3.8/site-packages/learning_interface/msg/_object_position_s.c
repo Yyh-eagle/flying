@@ -16,9 +16,6 @@
 #include "learning_interface/msg/detail/object_position__struct.h"
 #include "learning_interface/msg/detail/object_position__functions.h"
 
-#include "rosidl_runtime_c/primitives_sequence.h"
-#include "rosidl_runtime_c/primitives_sequence_functions.h"
-
 
 ROSIDL_GENERATOR_C_EXPORT
 bool learning_interface__msg__object_position__convert_from_py(PyObject * _pymsg, void * _ros_message)
@@ -58,23 +55,8 @@ bool learning_interface__msg__object_position__convert_from_py(PyObject * _pymsg
     if (!field) {
       return false;
     }
-    {
-      // TODO(dirk-thomas) use a better way to check the type before casting
-      assert(field->ob_type != NULL);
-      assert(field->ob_type->tp_name != NULL);
-      assert(strcmp(field->ob_type->tp_name, "numpy.ndarray") == 0);
-      PyArrayObject * seq_field = (PyArrayObject *)field;
-      Py_INCREF(seq_field);
-      assert(PyArray_NDIM(seq_field) == 1);
-      assert(PyArray_TYPE(seq_field) == NPY_INT32);
-      Py_ssize_t size = 6;
-      int32_t * dest = ros_message->x;
-      for (Py_ssize_t i = 0; i < size; ++i) {
-        int32_t tmp = *(npy_int32 *)PyArray_GETPTR1(seq_field, i);
-        memcpy(&dest[i], &tmp, sizeof(int32_t));
-      }
-      Py_DECREF(seq_field);
-    }
+    assert(PyLong_Check(field));
+    ros_message->x = (int32_t)PyLong_AsLong(field);
     Py_DECREF(field);
   }
   {  // y
@@ -82,23 +64,8 @@ bool learning_interface__msg__object_position__convert_from_py(PyObject * _pymsg
     if (!field) {
       return false;
     }
-    {
-      // TODO(dirk-thomas) use a better way to check the type before casting
-      assert(field->ob_type != NULL);
-      assert(field->ob_type->tp_name != NULL);
-      assert(strcmp(field->ob_type->tp_name, "numpy.ndarray") == 0);
-      PyArrayObject * seq_field = (PyArrayObject *)field;
-      Py_INCREF(seq_field);
-      assert(PyArray_NDIM(seq_field) == 1);
-      assert(PyArray_TYPE(seq_field) == NPY_INT32);
-      Py_ssize_t size = 6;
-      int32_t * dest = ros_message->y;
-      for (Py_ssize_t i = 0; i < size; ++i) {
-        int32_t tmp = *(npy_int32 *)PyArray_GETPTR1(seq_field, i);
-        memcpy(&dest[i], &tmp, sizeof(int32_t));
-      }
-      Py_DECREF(seq_field);
-    }
+    assert(PyLong_Check(field));
+    ros_message->y = (int32_t)PyLong_AsLong(field);
     Py_DECREF(field);
   }
   {  // z
@@ -106,23 +73,8 @@ bool learning_interface__msg__object_position__convert_from_py(PyObject * _pymsg
     if (!field) {
       return false;
     }
-    {
-      // TODO(dirk-thomas) use a better way to check the type before casting
-      assert(field->ob_type != NULL);
-      assert(field->ob_type->tp_name != NULL);
-      assert(strcmp(field->ob_type->tp_name, "numpy.ndarray") == 0);
-      PyArrayObject * seq_field = (PyArrayObject *)field;
-      Py_INCREF(seq_field);
-      assert(PyArray_NDIM(seq_field) == 1);
-      assert(PyArray_TYPE(seq_field) == NPY_INT32);
-      Py_ssize_t size = 6;
-      int32_t * dest = ros_message->z;
-      for (Py_ssize_t i = 0; i < size; ++i) {
-        int32_t tmp = *(npy_int32 *)PyArray_GETPTR1(seq_field, i);
-        memcpy(&dest[i], &tmp, sizeof(int32_t));
-      }
-      Py_DECREF(seq_field);
-    }
+    assert(PyLong_Check(field));
+    ros_message->z = (int32_t)PyLong_AsLong(field);
     Py_DECREF(field);
   }
   {  // f
@@ -167,57 +119,36 @@ PyObject * learning_interface__msg__object_position__convert_to_py(void * raw_ro
   learning_interface__msg__ObjectPosition * ros_message = (learning_interface__msg__ObjectPosition *)raw_ros_message;
   {  // x
     PyObject * field = NULL;
-    field = PyObject_GetAttrString(_pymessage, "x");
-    if (!field) {
-      return NULL;
+    field = PyLong_FromLong(ros_message->x);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "x", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
     }
-    assert(field->ob_type != NULL);
-    assert(field->ob_type->tp_name != NULL);
-    assert(strcmp(field->ob_type->tp_name, "numpy.ndarray") == 0);
-    PyArrayObject * seq_field = (PyArrayObject *)field;
-    assert(PyArray_NDIM(seq_field) == 1);
-    assert(PyArray_TYPE(seq_field) == NPY_INT32);
-    assert(sizeof(npy_int32) == sizeof(int32_t));
-    npy_int32 * dst = (npy_int32 *)PyArray_GETPTR1(seq_field, 0);
-    int32_t * src = &(ros_message->x[0]);
-    memcpy(dst, src, 6 * sizeof(int32_t));
-    Py_DECREF(field);
   }
   {  // y
     PyObject * field = NULL;
-    field = PyObject_GetAttrString(_pymessage, "y");
-    if (!field) {
-      return NULL;
+    field = PyLong_FromLong(ros_message->y);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "y", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
     }
-    assert(field->ob_type != NULL);
-    assert(field->ob_type->tp_name != NULL);
-    assert(strcmp(field->ob_type->tp_name, "numpy.ndarray") == 0);
-    PyArrayObject * seq_field = (PyArrayObject *)field;
-    assert(PyArray_NDIM(seq_field) == 1);
-    assert(PyArray_TYPE(seq_field) == NPY_INT32);
-    assert(sizeof(npy_int32) == sizeof(int32_t));
-    npy_int32 * dst = (npy_int32 *)PyArray_GETPTR1(seq_field, 0);
-    int32_t * src = &(ros_message->y[0]);
-    memcpy(dst, src, 6 * sizeof(int32_t));
-    Py_DECREF(field);
   }
   {  // z
     PyObject * field = NULL;
-    field = PyObject_GetAttrString(_pymessage, "z");
-    if (!field) {
-      return NULL;
+    field = PyLong_FromLong(ros_message->z);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "z", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
     }
-    assert(field->ob_type != NULL);
-    assert(field->ob_type->tp_name != NULL);
-    assert(strcmp(field->ob_type->tp_name, "numpy.ndarray") == 0);
-    PyArrayObject * seq_field = (PyArrayObject *)field;
-    assert(PyArray_NDIM(seq_field) == 1);
-    assert(PyArray_TYPE(seq_field) == NPY_INT32);
-    assert(sizeof(npy_int32) == sizeof(int32_t));
-    npy_int32 * dst = (npy_int32 *)PyArray_GETPTR1(seq_field, 0);
-    int32_t * src = &(ros_message->z[0]);
-    memcpy(dst, src, 6 * sizeof(int32_t));
-    Py_DECREF(field);
   }
   {  // f
     PyObject * field = NULL;

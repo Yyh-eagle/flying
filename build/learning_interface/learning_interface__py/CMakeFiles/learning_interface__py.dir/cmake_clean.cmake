@@ -10,6 +10,8 @@ file(REMOVE_RECURSE
   "../rosidl_generator_py/learning_interface/msg/_my_state_s.c"
   "../rosidl_generator_py/learning_interface/msg/_object_position.py"
   "../rosidl_generator_py/learning_interface/msg/_object_position_s.c"
+  "../rosidl_generator_py/learning_interface/msg/_stm32.py"
+  "../rosidl_generator_py/learning_interface/msg/_stm32_s.c"
   "../rosidl_generator_py/learning_interface/srv/__init__.py"
   "../rosidl_generator_py/learning_interface/srv/_add_two_ints.py"
   "../rosidl_generator_py/learning_interface/srv/_add_two_ints_s.c"

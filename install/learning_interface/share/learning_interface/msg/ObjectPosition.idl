@@ -5,26 +5,23 @@
 
 module learning_interface {
   module msg {
-    typedef int32 int32__6[6];
     struct ObjectPosition {
       @verbatim (language="comment", text=
         " 表示目标的X坐标")
-      int32__6 x;
+      int32 x;
 
       @verbatim (language="comment", text=
         " 表示目标的Y坐标")
-      int32__6 y;
+      int32 y;
 
       @verbatim (language="comment", text=
         " 表示目标的z坐标")
-      int32__6 z;
+      int32 z;
 
       @verbatim (language="comment", text=
-        " 表示功能指示")
+        " 表示是否有目标")
       int32 f;
 
-      @verbatim (language="comment", text=
-        " 表示功能指示")
       int32 kind;
     };
   };

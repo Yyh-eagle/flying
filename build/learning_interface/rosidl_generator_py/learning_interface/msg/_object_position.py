@@ -5,11 +5,6 @@
 
 # Import statements for member types
 
-# Member 'x'
-# Member 'y'
-# Member 'z'
-import numpy  # noqa: E402, I100
-
 import rosidl_parser.definition  # noqa: E402, I100
 
 
@@ -66,17 +61,17 @@ class ObjectPosition(metaclass=Metaclass_ObjectPosition):
     ]
 
     _fields_and_field_types = {
-        'x': 'int32[6]',
-        'y': 'int32[6]',
-        'z': 'int32[6]',
+        'x': 'int32',
+        'y': 'int32',
+        'z': 'int32',
         'f': 'int32',
         'kind': 'int32',
     }
 
     SLOT_TYPES = (
-        rosidl_parser.definition.Array(rosidl_parser.definition.BasicType('int32'), 6),  # noqa: E501
-        rosidl_parser.definition.Array(rosidl_parser.definition.BasicType('int32'), 6),  # noqa: E501
-        rosidl_parser.definition.Array(rosidl_parser.definition.BasicType('int32'), 6),  # noqa: E501
+        rosidl_parser.definition.BasicType('int32'),  # noqa: E501
+        rosidl_parser.definition.BasicType('int32'),  # noqa: E501
+        rosidl_parser.definition.BasicType('int32'),  # noqa: E501
         rosidl_parser.definition.BasicType('int32'),  # noqa: E501
         rosidl_parser.definition.BasicType('int32'),  # noqa: E501
     )
@@ -85,21 +80,9 @@ class ObjectPosition(metaclass=Metaclass_ObjectPosition):
         assert all('_' + key in self.__slots__ for key in kwargs.keys()), \
             'Invalid arguments passed to constructor: %s' % \
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
-        if 'x' not in kwargs:
-            self.x = numpy.zeros(6, dtype=numpy.int32)
-        else:
-            self.x = numpy.array(kwargs.get('x'), dtype=numpy.int32)
-            assert self.x.shape == (6, )
-        if 'y' not in kwargs:
-            self.y = numpy.zeros(6, dtype=numpy.int32)
-        else:
-            self.y = numpy.array(kwargs.get('y'), dtype=numpy.int32)
-            assert self.y.shape == (6, )
-        if 'z' not in kwargs:
-            self.z = numpy.zeros(6, dtype=numpy.int32)
-        else:
-            self.z = numpy.array(kwargs.get('z'), dtype=numpy.int32)
-            assert self.z.shape == (6, )
+        self.x = kwargs.get('x', int())
+        self.y = kwargs.get('y', int())
+        self.z = kwargs.get('z', int())
         self.f = kwargs.get('f', int())
         self.kind = kwargs.get('kind', int())
 
@@ -132,11 +115,11 @@ class ObjectPosition(metaclass=Metaclass_ObjectPosition):
     def __eq__(self, other):
         if not isinstance(other, self.__class__):
             return False
-        if all(self.x != other.x):
+        if self.x != other.x:
             return False
-        if all(self.y != other.y):
+        if self.y != other.y:
             return False
-        if all(self.z != other.z):
+        if self.z != other.z:
             return False
         if self.f != other.f:
             return False
@@ -156,29 +139,13 @@ class ObjectPosition(metaclass=Metaclass_ObjectPosition):
 
     @x.setter
     def x(self, value):
-        if isinstance(value, numpy.ndarray):
-            assert value.dtype == numpy.int32, \
-                "The 'x' numpy.ndarray() must have the dtype of 'numpy.int32'"
-            assert value.size == 6, \
-                "The 'x' numpy.ndarray() must have a size of 6"
-            self._x = value
-            return
         if __debug__:
-            from collections.abc import Sequence
-            from collections.abc import Set
-            from collections import UserList
-            from collections import UserString
             assert \
-                ((isinstance(value, Sequence) or
-                  isinstance(value, Set) or
-                  isinstance(value, UserList)) and
-                 not isinstance(value, str) and
-                 not isinstance(value, UserString) and
-                 len(value) == 6 and
-                 all(isinstance(v, int) for v in value) and
-                 all(val >= -2147483648 and val < 2147483648 for val in value)), \
-                "The 'x' field must be a set or sequence with length 6 and each value of type 'int' and each integer in [-2147483648, 2147483647]"
-        self._x = numpy.array(value, dtype=numpy.int32)
+                isinstance(value, int), \
+                "The 'x' field must be of type 'int'"
+            assert value >= -2147483648 and value < 2147483648, \
+                "The 'x' field must be an integer in [-2147483648, 2147483647]"
+        self._x = value
 
     @property
     def y(self):
@@ -187,29 +154,13 @@ class ObjectPosition(metaclass=Metaclass_ObjectPosition):
 
     @y.setter
     def y(self, value):
-        if isinstance(value, numpy.ndarray):
-            assert value.dtype == numpy.int32, \
-                "The 'y' numpy.ndarray() must have the dtype of 'numpy.int32'"
-            assert value.size == 6, \
-                "The 'y' numpy.ndarray() must have a size of 6"
-            self._y = value
-            return
         if __debug__:
-            from collections.abc import Sequence
-            from collections.abc import Set
-            from collections import UserList
-            from collections import UserString
             assert \
-                ((isinstance(value, Sequence) or
-                  isinstance(value, Set) or
-                  isinstance(value, UserList)) and
-                 not isinstance(value, str) and
-                 not isinstance(value, UserString) and
-                 len(value) == 6 and
-                 all(isinstance(v, int) for v in value) and
-                 all(val >= -2147483648 and val < 2147483648 for val in value)), \
-                "The 'y' field must be a set or sequence with length 6 and each value of type 'int' and each integer in [-2147483648, 2147483647]"
-        self._y = numpy.array(value, dtype=numpy.int32)
+                isinstance(value, int), \
+                "The 'y' field must be of type 'int'"
+            assert value >= -2147483648 and value < 2147483648, \
+                "The 'y' field must be an integer in [-2147483648, 2147483647]"
+        self._y = value
 
     @property
     def z(self):
@@ -218,29 +169,13 @@ class ObjectPosition(metaclass=Metaclass_ObjectPosition):
 
     @z.setter
     def z(self, value):
-        if isinstance(value, numpy.ndarray):
-            assert value.dtype == numpy.int32, \
-                "The 'z' numpy.ndarray() must have the dtype of 'numpy.int32'"
-            assert value.size == 6, \
-                "The 'z' numpy.ndarray() must have a size of 6"
-            self._z = value
-            return
         if __debug__:
-            from collections.abc import Sequence
-            from collections.abc import Set
-            from collections import UserList
-            from collections import UserString
             assert \
-                ((isinstance(value, Sequence) or
-                  isinstance(value, Set) or
-                  isinstance(value, UserList)) and
-                 not isinstance(value, str) and
-                 not isinstance(value, UserString) and
-                 len(value) == 6 and
-                 all(isinstance(v, int) for v in value) and
-                 all(val >= -2147483648 and val < 2147483648 for val in value)), \
-                "The 'z' field must be a set or sequence with length 6 and each value of type 'int' and each integer in [-2147483648, 2147483647]"
-        self._z = numpy.array(value, dtype=numpy.int32)
+                isinstance(value, int), \
+                "The 'z' field must be of type 'int'"
+            assert value >= -2147483648 and value < 2147483648, \
+                "The 'z' field must be an integer in [-2147483648, 2147483647]"
+        self._z = value
 
     @property
     def f(self):

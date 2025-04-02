@@ -67,6 +67,7 @@ rosidl_typesupport_introspection_c/learning_interface/msg/detail/object_position
 rosidl_typesupport_introspection_c/learning_interface/msg/detail/object_position__rosidl_typesupport_introspection_c.h: /opt/ros/foxy/share/rosidl_typesupport_introspection_c/resource/srv__type_support.c.em
 rosidl_typesupport_introspection_c/learning_interface/msg/detail/object_position__rosidl_typesupport_introspection_c.h: rosidl_adapter/learning_interface/msg/ObjectPosition.idl
 rosidl_typesupport_introspection_c/learning_interface/msg/detail/object_position__rosidl_typesupport_introspection_c.h: rosidl_adapter/learning_interface/msg/MyState.idl
+rosidl_typesupport_introspection_c/learning_interface/msg/detail/object_position__rosidl_typesupport_introspection_c.h: rosidl_adapter/learning_interface/msg/STM32.idl
 rosidl_typesupport_introspection_c/learning_interface/msg/detail/object_position__rosidl_typesupport_introspection_c.h: rosidl_adapter/learning_interface/srv/AddTwoInts.idl
 rosidl_typesupport_introspection_c/learning_interface/msg/detail/object_position__rosidl_typesupport_introspection_c.h: rosidl_adapter/learning_interface/srv/GetObjectPosition.idl
 rosidl_typesupport_introspection_c/learning_interface/msg/detail/object_position__rosidl_typesupport_introspection_c.h: rosidl_adapter/learning_interface/action/MoveCircle.idl
@@ -83,6 +84,9 @@ rosidl_typesupport_introspection_c/learning_interface/msg/detail/object_position
 rosidl_typesupport_introspection_c/learning_interface/msg/detail/my_state__rosidl_typesupport_introspection_c.h: rosidl_typesupport_introspection_c/learning_interface/msg/detail/object_position__rosidl_typesupport_introspection_c.h
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/learning_interface/msg/detail/my_state__rosidl_typesupport_introspection_c.h
 
+rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__rosidl_typesupport_introspection_c.h: rosidl_typesupport_introspection_c/learning_interface/msg/detail/object_position__rosidl_typesupport_introspection_c.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__rosidl_typesupport_introspection_c.h
+
 rosidl_typesupport_introspection_c/learning_interface/srv/detail/add_two_ints__rosidl_typesupport_introspection_c.h: rosidl_typesupport_introspection_c/learning_interface/msg/detail/object_position__rosidl_typesupport_introspection_c.h
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/learning_interface/srv/detail/add_two_ints__rosidl_typesupport_introspection_c.h
 
@@ -97,6 +101,9 @@ rosidl_typesupport_introspection_c/learning_interface/msg/detail/object_position
 
 rosidl_typesupport_introspection_c/learning_interface/msg/detail/my_state__type_support.c: rosidl_typesupport_introspection_c/learning_interface/msg/detail/object_position__rosidl_typesupport_introspection_c.h
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/learning_interface/msg/detail/my_state__type_support.c
+
+rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__type_support.c: rosidl_typesupport_introspection_c/learning_interface/msg/detail/object_position__rosidl_typesupport_introspection_c.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__type_support.c
 
 rosidl_typesupport_introspection_c/learning_interface/srv/detail/add_two_ints__type_support.c: rosidl_typesupport_introspection_c/learning_interface/msg/detail/object_position__rosidl_typesupport_introspection_c.h
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/learning_interface/srv/detail/add_two_ints__type_support.c
@@ -133,9 +140,22 @@ CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typ
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/msg/detail/my_state__type_support.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_introspection_c/learning_interface/msg/detail/my_state__type_support.c -o CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/msg/detail/my_state__type_support.c.s
 
+CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__type_support.c.o: CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/flags.make
+CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__type_support.c.o: rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__type_support.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__type_support.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__type_support.c.o   -c /home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__type_support.c
+
+CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__type_support.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__type_support.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__type_support.c > CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__type_support.c.i
+
+CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__type_support.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__type_support.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__type_support.c -o CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__type_support.c.s
+
 CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/srv/detail/add_two_ints__type_support.c.o: CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/flags.make
 CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/srv/detail/add_two_ints__type_support.c.o: rosidl_typesupport_introspection_c/learning_interface/srv/detail/add_two_ints__type_support.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/srv/detail/add_two_ints__type_support.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/srv/detail/add_two_ints__type_support.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/srv/detail/add_two_ints__type_support.c.o   -c /home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_introspection_c/learning_interface/srv/detail/add_two_ints__type_support.c
 
 CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/srv/detail/add_two_ints__type_support.c.i: cmake_force
@@ -148,7 +168,7 @@ CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typ
 
 CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/srv/detail/get_object_position__type_support.c.o: CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/flags.make
 CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/srv/detail/get_object_position__type_support.c.o: rosidl_typesupport_introspection_c/learning_interface/srv/detail/get_object_position__type_support.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/srv/detail/get_object_position__type_support.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/srv/detail/get_object_position__type_support.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/srv/detail/get_object_position__type_support.c.o   -c /home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_introspection_c/learning_interface/srv/detail/get_object_position__type_support.c
 
 CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/srv/detail/get_object_position__type_support.c.i: cmake_force
@@ -161,7 +181,7 @@ CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typ
 
 CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/action/detail/move_circle__type_support.c.o: CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/flags.make
 CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/action/detail/move_circle__type_support.c.o: rosidl_typesupport_introspection_c/learning_interface/action/detail/move_circle__type_support.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/action/detail/move_circle__type_support.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/action/detail/move_circle__type_support.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/action/detail/move_circle__type_support.c.o   -c /home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_introspection_c/learning_interface/action/detail/move_circle__type_support.c
 
 CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/action/detail/move_circle__type_support.c.i: cmake_force
@@ -176,6 +196,7 @@ CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typ
 learning_interface__rosidl_typesupport_introspection_c_OBJECTS = \
 "CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/msg/detail/object_position__type_support.c.o" \
 "CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/msg/detail/my_state__type_support.c.o" \
+"CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__type_support.c.o" \
 "CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/srv/detail/add_two_ints__type_support.c.o" \
 "CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/srv/detail/get_object_position__type_support.c.o" \
 "CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/action/detail/move_circle__type_support.c.o"
@@ -185,6 +206,7 @@ learning_interface__rosidl_typesupport_introspection_c_EXTERNAL_OBJECTS =
 
 liblearning_interface__rosidl_typesupport_introspection_c.so: CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/msg/detail/object_position__type_support.c.o
 liblearning_interface__rosidl_typesupport_introspection_c.so: CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/msg/detail/my_state__type_support.c.o
+liblearning_interface__rosidl_typesupport_introspection_c.so: CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__type_support.c.o
 liblearning_interface__rosidl_typesupport_introspection_c.so: CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/srv/detail/add_two_ints__type_support.c.o
 liblearning_interface__rosidl_typesupport_introspection_c.so: CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/srv/detail/get_object_position__type_support.c.o
 liblearning_interface__rosidl_typesupport_introspection_c.so: CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/learning_interface/action/detail/move_circle__type_support.c.o
@@ -213,7 +235,7 @@ liblearning_interface__rosidl_typesupport_introspection_c.so: /opt/ros/foxy/lib/
 liblearning_interface__rosidl_typesupport_introspection_c.so: /opt/ros/foxy/lib/librosidl_runtime_c.so
 liblearning_interface__rosidl_typesupport_introspection_c.so: /opt/ros/foxy/lib/librcutils.so
 liblearning_interface__rosidl_typesupport_introspection_c.so: CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking C shared library liblearning_interface__rosidl_typesupport_introspection_c.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C shared library liblearning_interface__rosidl_typesupport_introspection_c.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -227,11 +249,13 @@ CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/clean:
 
 CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/learning_interface/msg/detail/object_position__rosidl_typesupport_introspection_c.h
 CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/learning_interface/msg/detail/my_state__rosidl_typesupport_introspection_c.h
+CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__rosidl_typesupport_introspection_c.h
 CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/learning_interface/srv/detail/add_two_ints__rosidl_typesupport_introspection_c.h
 CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/learning_interface/srv/detail/get_object_position__rosidl_typesupport_introspection_c.h
 CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/learning_interface/action/detail/move_circle__rosidl_typesupport_introspection_c.h
 CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/learning_interface/msg/detail/object_position__type_support.c
 CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/learning_interface/msg/detail/my_state__type_support.c
+CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/learning_interface/msg/detail/stm32__type_support.c
 CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/learning_interface/srv/detail/add_two_ints__type_support.c
 CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/learning_interface/srv/detail/get_object_position__type_support.c
 CMakeFiles/learning_interface__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/learning_interface/action/detail/move_circle__type_support.c

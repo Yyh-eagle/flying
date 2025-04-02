@@ -1,40 +1,59 @@
-import rclpy                            # ROS2 Python接口库
-from rclpy.node import Node             # ROS2 节点类
+import rclpy                           
+from rclpy.node import Node             
 from sensor_msgs.msg import Image       # 图像消息类型
-from sensor_msgs.msg import CameraInfo
-
+from sensor_msgs.msg import CameraInfo  #相机参数消息
 from cv_bridge import CvBridge          # ROS与OpenCV图像转换类
 from rcl_interfaces.msg import ParameterDescriptor
+from learning_interface.msg import ObjectPosition,MyState,STM32  # 自定义的目标位置消息
+import pyrealsense2 as rs2#python内置的d435i库
 
-from learning_interface.msg import ObjectPosition,MyState  # 自定义的目标位置消息
-import pyrealsense2 as rs2
-
-import cv2                              # Opencv图像处理库
-import numpy as np                      # Python数值计算库
+import cv2                             
+import numpy as np                      
 import math
 
 import sys
+sys.path.append('/home/yyh/ros2_ws/src/yyh_object/yyh_object/')
 import os
 import datetime
-
-import pyzbar.pyzbar as pyzbar# 
-from ament_index_python.packages import get_package_share_directory
+from yolo_function import locate_yolo_d4
+from ament_index_python.packages import get_package_share_directory#用于
 from yolov5 import YOLOv5
-lower_red = np.array([0, 90, 128])      # 红色的HSV阈值下限
-upper_red = np.array([180, 255, 255])   # 红色的HSV阈值上限
+
 
 package_share_directory = get_package_share_directory('yolov5_ros2')
 
-#创建一个订阅者节点
+class Param():#当做参数传递
+    def __init__(self):
+        self.ifarrive = None
+        self.task_state = None
+        self.task_id = None
+        self.D435i_yaw = None
+        self.color_d435i = None
+        self.depth_d435i = None
+        self.intrinsics =None
+        #self.usb =None
+    
+    def update_param(self,ifarrive,task_state,task_id,D435i_yaw,color_d435i,depth_d435i,intrinsics):
+        self.ifarrive = ifarrive
+        self.task_state = task_state
+        self.task_id = task_id
+        self.D435i_yaw = D435i_yaw
+        self.color_d435i = color_d435i
+        self.depth_d435i = depth_d435i
+        self.intrinsics =intrinsics
 
 class ImageSubscriber(Node):
     def __init__(self, name):
         
         super().__init__(name)    
         # ROS2节点父类初始化
-        self.frame_cnt =0
-        self.Init_video()
-        
+        self.frame_cnt =0#todo 干啥用的
+        self.param = Param()
+        self.colord435i = None
+        self.depthd435i = None
+        self.intrinsics = None
+        self.sub_stm = self.create_subscription(#验证成功
+            STM32, "/stm_info", self.listener_callback_stm, 10)
         #D435i接收
         self.sub_color = self.create_subscription(
              Image, '/D435i/color/image_raw', self.listener_callback_d435, 10
@@ -45,25 +64,19 @@ class ImageSubscriber(Node):
         self.subscription = self.create_subscription(
             CameraInfo,'/D435i/aligned_depth_to_color/camera_info',self.camera_info_callback,10
         )
-        
-        self.task_state=-1# the state machine
-        self.d435_location = 1
-
+    
         self.cv_bridge = CvBridge()# 创建一个图像转换对象，用于OpenCV图像与ROS的图像消息的互相转换
-        self.colord435i = None
-        self.depthd435i = None
-        self.intrinsics =None
-        self.usb = cv2.VideoCapture(6)#小相机
+
+        #self.usb = cv2.VideoCapture(6)#小相机
         
         ########################################pub#########################################
         self.pub_d435 = self.create_publisher(
             ObjectPosition, "d435_object_position", 10)              # 创建发布者对象（消息类型、话题名、队列长度）
+
         self.pub_usb = self.create_publisher(
             ObjectPosition, "usb_object_position", 10)    
         #########################################yolo#########################################
         
-        self.declare_parameter("device", "cpu", ParameterDescriptor(
-            name="device", description="calculate_device default:cpu optional:cuda:0"))
 
         self.declare_parameter("model", f"{package_share_directory}/config/best_8_1_2.pt", ParameterDescriptor(
             name="model", description=f"default: {package_share_directory}/config/best_landing1.pt"))
@@ -81,14 +94,48 @@ class ImageSubscriber(Node):
         
         # 1.load model
         model = self.get_parameter('model').value
-        device = self.get_parameter('device').value
-        self.yolov5 = YOLOv5(model_path=model, device=device)
+ 
+        self.yolov5 = YOLOv5(model_path=model, device="cpu")
+    def listener_callback_stm(self,msg):#主任务在这里写，可以保证周期话运行
+        #每次收到stm32的信息，都赋值给全局变量
+        self.ifarrive = msg.ifarrive
+        self.task_id = msg.id
+        self.task_state = msg.state
+        self.D435i_yaw = msg.yaw
         
+        if self.colord435i is not None and self.depthd435i is not None and self.intrinsics is not None:#bug效果太慢了，太卡了
+            self.param.update_param(self.ifarrive,self.task_state,self.task_id,self.D435i_yaw,self.colord435i,self.depthd435i,self.intrinsics)
+            #self.get_logger().info("vision") 
+            #任务规划
+            self.task_plan()
+            cv2.putText(self.colord435i,"task_state: "+str(self.task_state),(10,50),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
+            cv2.putText(self.colord435i,"task_id: "+str(self.task_id),(10,90),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
+            cv2.imshow("d435i",self.colord435i)
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                return
+
+
+    def task_plan(self):
+        if self.task_state == 0:
+            if self.task_id == 0:
+                locate_yolo_d4(self.param,self.yolov5)
+            elif self.task_id == 1:
+                pass
+
+            else:
+                pass
+
+        elif self.task_state == 1:
+            pass
+        else:
+            pass
     # 图像回调函数
-    def listener_callback_depth(self,data):
+    def listener_callback_depth(self , data):
         
         self.depthd435i = self.cv_bridge.imgmsg_to_cv2(data, '16UC1')   # 将ROS的图像消息转化成OpenCV图像  
-    
+    def listener_callback_d435(self, data):
+        
+        self.colord435i = self.cv_bridge.imgmsg_to_cv2(data, 'bgr8')
     def camera_info_callback(self, msg):
         # 获取内参
         self.intrinsics = rs2.intrinsics()
@@ -101,176 +148,14 @@ class ImageSubscriber(Node):
         self.intrinsics.model = rs2.distortion.brown_conrady  # 使用的畸变模型
         self.intrinsics.coeffs = [msg.d[0], msg.d[1], msg.d[2], msg.d[3], msg.d[4]]          
     
-    def listener_callback_d435(self, data):
-        
-        self.get_logger().info('')     # 输出日志信息，提示已进入回调函数
-        self.colord435i = self.cv_bridge.imgmsg_to_cv2(data, 'bgr8')
-        _,self.usb_frame = self.usb.read()
-        self.init_writers(self.colord435i, self.usb_frame)
-        try:
-            if frame1 is not None and self.writers['usb1'] is not None:
-                self.writers['usb1'].write(frame1)
-            if frame2 is not None and self.writers['usb2'] is not None:
-                self.writers['usb2'].write(frame2)
-        except Exception as e:
-            print(f"视频写入失败: {str(e)}")
-        if self.colord435i is not None and self.depthd435i is not None and self.intrinsics is not None and self.usb_frame is not None:
-        #if self.colord435i is not None and self.depthd435i is not None and self.intrinsics is not None :
-            self.locate_yolo_d4(self.colord435i,self.depthd435i)
-            self.locate_yolo_usb(self.usb_frame)
-            
-            
-##########################################################################################################################################################33
-    def locate_yolo_d4(self,color_image,depth_image):
-        real_x_int=0
-        real_y_int=0
-        real_z_int=0
-        index=0
-        position = ObjectPosition()#create a object for message transfer
-
-        d_y, d_x = depth_image.shape[0:2] #dy = depth_image.shape[0],the number of the line
-        c_y, c_x = color_image.shape[0:2]
-        #self.get_logger().info('d_x=%d,d_y=%d  c_x=%d,c_y=%d,c_z=%d' % (d_x,d_y,c_x,c_y,c_z))   
-        
-        results=self.yolo_recog(color_image,0.8)#threshold =0.8
-        for object in results:
-            
-            rate=d_x/c_x
-            
-            (x1,y1,x2,y2) = object[2:6]
-            kind_order=object[7]
-            probability=object[6]
-            
-            center_x_int=int(rate*object[0])
-            center_y_int=int(rate*object[1])
-            real_z=depth_image[center_y_int,center_x_int]
-            
-            
-            if real_z>1 and index <6:
-                self.flag_d=1
-                #camera position
-                camera_coordinate = rs2.rs2_deproject_pixel_to_point(self.intrinsics, [int(object[0]),int(object[1])], real_z)
-                (real_x,real_y,real_z) = camera_coordinate[0:3]
-              
-                #self.get_logger().info('real_x=%f real_y=%f real_z=%f' % (real_x,real_y,real_z))
-                if self.d435_location==1:
-                    real_y_int=int(real_x)
-                    real_x_int=int((real_y-real_z)*0.707)
-                    real_z_int=int(-(real_z+real_y)*0.707)
-                    
-                if self.d435_location==0:
-                    real_x_int=int(real_x)
-                    real_y_int=int(real_z)
-                    real_z_int=-int(real_y)
-                    
-
-                cv2.putText(color_image,str(kind_order),(x1,y1 ), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
-                cv2.rectangle(color_image, (x1, y1), (x2, y2), (0, 255, 0), 2)
-                if kind_order ==0:
-                    self.get_logger().info('real_x=%f real_y=%f real_z=%f' % (real_x_int-400,real_y_int,real_z_int))
-                    position.x[index], position.y[index],position.z[index] = real_x_int-400,real_y_int,real_z_int
-                    index=index+1          
-        position.f,position.kind=index,3
-        
-        self.pub_d435.publish(position)
-        cv2.imshow("color",color_image)                          # 使用OpenCV显示处理后的图像效果
-        cv2.waitKey(1)
-    def locate_yolo_usb(self,color_image):
-        #self.get_logger().info('d_x=%d,d_y=%d  c_x=%d,c_y=%d,c_z=%d' % (d_x,d_y,c_x,c_y,c_z))   
-        flag_find=0
-        target_x=0
-        target_y=0
-        
-        results=self.yolo_recog(color_image,0.80)
-        kind_order=-1
-        for object in results:
-            (x1,y1,x2,y2) = object[2:6]
-            probability=object[6]
-            kind_order=object[7]
-            
-            cv2.rectangle(color_image, (x1, y1), (x2, y2), (0, 255, 0), 2)   
-            cv2.putText(color_image,str(kind_order),(x1,y1 ), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
-            
-            target_x=(int(color_image.shape[1]//2)-int(object[0]))
-            target_y=(int(object[1])-int(color_image.shape[0]//2))
-            flag_find=1
     
-        position = ObjectPosition()
-        if kind_order==0:
-            position.x[0], position.y[0],position.z[0],position.f,position.kind = target_y,-target_x,0,flag_find,13
-            print(position.x[0], position.y[0],position.z[0])
-        self.pub_usb.publish(position)
-        cv2.imshow("usb",color_image)                          # 使用OpenCV显示处理后的图像效果
-        cv2.waitKey(1)
-        
-    def yolo_recog(self,img,threshold):#yolo for d435i
-        detect_result = self.yolov5.predict(img)#predict
-        predictions = detect_result.pred[0]#result
-        boxes = predictions[:, :4]  # x1, y1, x2, y2  = predictions[:,0],predictions[:,1],predictions[:,2],predictions[:,3]
-        scores = predictions[:, 4]#score = predictions[:,4]
-        categories = predictions[:, 5]#cate = predictions[:,5]
-        result=[]
-        kinds=['landing_cross','one','two','three','four','A']
-        for index in range(len(categories)):
-            name = detect_result.names[int(categories[index])]
-            for j in range(len(kinds)):
-                if kinds[j] ==name:
 
-                    name_order=j#find the same kind the same with category
-                    break
-                
-            x1, y1, x2, y2 = boxes[index]#find th center of the box
-            probability= detect_result.pred[0][index][4]
-            if probability>threshold:
-                pack=(int((x1+x2)/2),int((y1+y2)/2),int(x1),int(y1),int(x2),int(y2),probability,name_order)
-                result.append(pack)#turple
-    
-        return result
 
-    def Init_video(self):
-        #视频初始化----------------------------------------
-        #录制视频代码
-        self.video_dir = os.path.join(os.path.dirname(__file__), 'saved_videos')
-        os.makedirs(self.video_dir, exist_ok=True)#生成目录
 
-        # 生成带时间戳的文件名
-        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        self.video_paths = {
-            'usb1': os.path.join(self.video_dir, f'usb1_{timestamp}.avi'),
-            'usb2': os.path.join(self.video_dir, f'usb2_{timestamp}.avi')
-        }
-        
-        # 视频写入器（稍后初始化）
-        self.writers = {
-            'usb1': None,
-            'usb2': None
-        }
-    #初始化视频写入器
+            
 
-    def init_writers(self, frame1, frame2):
-        """根据第一帧初始化视频写入器"""
-        fourcc = cv2.VideoWriter_fourcc(*'XVID')  # 实例化视频编码器
-        
-        # 初始化usb1的写入器
-        if frame1 is not None and self.writers['usb1'] is None:#第一帧，必须要求self.writers['usb1'] is None
-            h, w = frame1.shape[:2]
-            self.writers['usb1'] = cv2.VideoWriter(
-                self.video_paths['usb1'], 
-                fourcc, 
-                20.0,  # 帧率（根据实际情况调整）
-                (w, h)
-            )
-        
-        # 初始化usb2的写入器
-        if frame2 is not None and self.writers['usb2'] is None:
-            h, w = frame2.shape[:2]
-            self.writers['usb2'] = cv2.VideoWriter(
-                self.video_paths['usb2'], 
-                fourcc,
-                20.0,  # 帧率（根据实际情况调整）
-                (w, h)
-            )
-    
+
+
 
 
 def main(args=None):                            # ROS2节点主入口main函数()

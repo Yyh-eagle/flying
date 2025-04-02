@@ -37,8 +37,8 @@ static rosidl_typesupport_introspection_c__MessageMember ObjectPosition__rosidl_
     rosidl_typesupport_introspection_c__ROS_TYPE_INT32,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
-    true,  // is array
-    6,  // array size
+    false,  // is array
+    0,  // array size
     false,  // is upper bound
     offsetof(learning_interface__msg__ObjectPosition, x),  // bytes offset in struct
     NULL,  // default value
@@ -52,8 +52,8 @@ static rosidl_typesupport_introspection_c__MessageMember ObjectPosition__rosidl_
     rosidl_typesupport_introspection_c__ROS_TYPE_INT32,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
-    true,  // is array
-    6,  // array size
+    false,  // is array
+    0,  // array size
     false,  // is upper bound
     offsetof(learning_interface__msg__ObjectPosition, y),  // bytes offset in struct
     NULL,  // default value
@@ -67,8 +67,8 @@ static rosidl_typesupport_introspection_c__MessageMember ObjectPosition__rosidl_
     rosidl_typesupport_introspection_c__ROS_TYPE_INT32,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
-    true,  // is array
-    6,  // array size
+    false,  // is array
+    0,  // array size
     false,  // is upper bound
     offsetof(learning_interface__msg__ObjectPosition, z),  // bytes offset in struct
     NULL,  // default value

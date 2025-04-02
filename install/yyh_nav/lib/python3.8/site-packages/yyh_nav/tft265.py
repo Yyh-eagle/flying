@@ -3,7 +3,7 @@ from rclpy.node   import Node                      # ROS2 节点类
 from std_msgs.msg import String                    # 字符串消息类型
 from tf2_msgs.msg import TFMessage
 from learning_interface.msg import ObjectPosition  # 自定义的目标位置消息
-
+from learning_interface.msg import STM32
 
 
 import numpy as np 
@@ -23,22 +23,14 @@ import time
 class SubscriberNode(Node):
     def __init__(self, name):
         super().__init__(name)
-        self.serial = SerialPort()#通信类
-
-        self.l0_vector = np.array([-0.197,0,0])
-        #the data from t265 included xyz and quaternion
-
-
-        self.d435_x = 0
-        self.d435_y = 0
-        self.d435_z = 0
-        self.flag_d = 0
-
+        self.serial = SerialPort()#通信类初始化
+        #创建发布者
+        self.pub = self.create_publisher(STM32, "/stm_info", 10)#stm32的状态机控制信息
         # 创建订阅者
         self.sub = self.create_subscription(\
-            TFMessage, "/tf", self.T2_listener_callback, 10)       # 创建订阅者对象（消息类型、话题名、订阅者回调函数、队列长度
+            TFMessage, "/tf", self.T2_listener_callback, 10) #订阅T265的消息
         self.sub_d435 = self.create_subscription(\
-            ObjectPosition, "/d435_object_position", self.listener_callback_d435, 10)       # 创建订阅者对象（消息类型、话题名、订阅者回调函数、队列长度
+            ObjectPosition, "/d435_object_position", self.listener_callback_d435, 10)#不订阅图像，只保留目标信息
         self.sub_usb  = self.create_subscription(\
             ObjectPosition,'/usb_object_position',self.listener_callback_usb,10)
         self.tim = self.create_timer(0.1, self.timer_callback) #主循环 10帧
@@ -47,8 +39,16 @@ class SubscriberNode(Node):
     def timer_callback(self):
         #self.serial.Timer_zero()#清零所需变量
         self.serial.receive()#定时器接受数据
+        #将接受到的变量赋值在msg中
+        msg = STM32()#成功实现通信
+        msg.ifarrive = self.serial.ifArrive_int
+        msg.id = self.serial.task_id_int
+        msg.state = self.serial.task_state_int
+        msg.yaw = self.serial.d435_yaw_float
+        self.pub.publish(msg)
     
-        self.get_logger().info('send: '+str(self.serial.data_num))
+
+        
 
     #T265回调函数 
     def T2_listener_callback(self,msg):                                             # 创建回调函数，执行收到话题消息后对数据的处理
@@ -68,14 +68,14 @@ class SubscriberNode(Node):
     def Q2E_Q2R(self):#四元数转欧拉角和旋转矩阵
         quaternion = [self.q1, self.q2, self.q3, self.q0]
         r = R.from_quat(quaternion)
-        self.euler=r.as_euler('xyz', degrees=True)
+        self.euler=r.as_euler('xyz', degrees=True)#获取欧拉角
         
         self.rot = R.from_quat(quaternion).as_matrix()
         
 
     #将T265镜头转换为机身中心位置和姿态
     def correctT265(self):
-        
+        self.l0_vector = np.array([-0.197,0,0])
         r_r = np.dot(self.rot,self.l0_vector)#用旋转矩阵乘中心相对于T265的向量
         r_e = np.array([self.t2x,self.t2y,self.t2z])
         self.r_a = r_r + r_e - self.l0_vector#质心加上姿态向量减去初始坐标系偏移
@@ -89,25 +89,34 @@ class SubscriberNode(Node):
         self.serial.Send_message()
         self.get_logger().info(str(self.serial.data_num))
         
-    def listener_callback_d435(self, msg):                             # 创建回调函数，执行收到话题消息后对数据的处理
-        self.d435_x,self.d435_y,self.d435_z,self.flag_d=msg.x,msg.y,msg.z,msg.f
-       
-        #self.get_logger().info('Target Position: "(%d,%d,%d)"' % (self.d435_x[0], self.d435_y[0],self.d435_z[0]))
+    def listener_callback_d435(self, msg): 
+        #将的d435i的相机坐标系下的坐标保存
+    
+        #怎么控制各个节点开闭？？？
+
+        self.d435_x,self.d435_y,self.d435_z=msg.x,msg.y,msg.z
+        self.serial.d435_flag_u = msg.f#是否有目标
+        self.serial.D435_aim_i =msg.kind#目标是什么类型
+        #这几个值倒是是什么数据类型？
+        self.get_logger().info('相机坐标系: "(%d,%d,%d)"' % (self.d435_x, self.d435_y,self.d435_z))
         self.get_world_point()#d经过世界坐标转换
         
     def get_world_point(self):
-        #只考虑yaw角
-        #self.serial.Send_message(self.d435_x,self.d435_y,self.d435_z,self.flag_d)
+     
+
         yaw = self.euler[2]*np.pi/180
-        x_d = np.array([self.d435_x[0],self.d435_y[0],self.d435_z[0]])
         
-        
+        x_d = np.array([self.d435_x,self.d435_y,self.d435_z])#t265坐标系下的目标点
 
         self.get_logger().info("t265坐标系下的目标点: %d, %d, %d" % (x_d[0]/10, x_d[1]/10, x_d[2]/10))
-        x_w = x_d[0]*np.cos(yaw) - x_d[1]*np.sin(yaw) + self.t2x*1000 +262#m?cm?
+        x_w = x_d[0]*np.cos(yaw) - x_d[1]*np.sin(yaw) + self.t2x*1000 +197#mm
         y_w = x_d[0]*np.sin(yaw) + x_d[1]*np.cos(yaw) + self.t2y*1000
 
-        self.get_logger().info("最终得到的坐标:[%d, %d]cm" % (x_w/10, y_w/10))
+        self.get_logger().info("最终得到的坐标:[%d, %d]cm" % (x_w/100, y_w/100))#todo单位是不是cm？
+
+        self.serial.d435_x_f = x_w/100
+        self.serial.d435_y_f = y_w/100
+        self.serial.d435_z_f = self.d435_z/100
         
     def listener_callback_usb(self,msg):
         self.usb_x=msg.x

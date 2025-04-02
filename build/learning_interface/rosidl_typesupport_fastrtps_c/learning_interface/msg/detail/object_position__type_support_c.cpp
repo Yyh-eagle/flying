@@ -51,23 +51,17 @@ static bool _ObjectPosition__cdr_serialize(
   const _ObjectPosition__ros_msg_type * ros_message = static_cast<const _ObjectPosition__ros_msg_type *>(untyped_ros_message);
   // Field name: x
   {
-    size_t size = 6;
-    auto array_ptr = ros_message->x;
-    cdr.serializeArray(array_ptr, size);
+    cdr << ros_message->x;
   }
 
   // Field name: y
   {
-    size_t size = 6;
-    auto array_ptr = ros_message->y;
-    cdr.serializeArray(array_ptr, size);
+    cdr << ros_message->y;
   }
 
   // Field name: z
   {
-    size_t size = 6;
-    auto array_ptr = ros_message->z;
-    cdr.serializeArray(array_ptr, size);
+    cdr << ros_message->z;
   }
 
   // Field name: f
@@ -94,23 +88,17 @@ static bool _ObjectPosition__cdr_deserialize(
   _ObjectPosition__ros_msg_type * ros_message = static_cast<_ObjectPosition__ros_msg_type *>(untyped_ros_message);
   // Field name: x
   {
-    size_t size = 6;
-    auto array_ptr = ros_message->x;
-    cdr.deserializeArray(array_ptr, size);
+    cdr >> ros_message->x;
   }
 
   // Field name: y
   {
-    size_t size = 6;
-    auto array_ptr = ros_message->y;
-    cdr.deserializeArray(array_ptr, size);
+    cdr >> ros_message->y;
   }
 
   // Field name: z
   {
-    size_t size = 6;
-    auto array_ptr = ros_message->z;
-    cdr.deserializeArray(array_ptr, size);
+    cdr >> ros_message->z;
   }
 
   // Field name: f
@@ -142,29 +130,20 @@ size_t get_serialized_size_learning_interface__msg__ObjectPosition(
 
   // field.name x
   {
-    size_t array_size = 6;
-    auto array_ptr = ros_message->x;
-    (void)array_ptr;
-    size_t item_size = sizeof(array_ptr[0]);
-    current_alignment += array_size * item_size +
+    size_t item_size = sizeof(ros_message->x);
+    current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
   // field.name y
   {
-    size_t array_size = 6;
-    auto array_ptr = ros_message->y;
-    (void)array_ptr;
-    size_t item_size = sizeof(array_ptr[0]);
-    current_alignment += array_size * item_size +
+    size_t item_size = sizeof(ros_message->y);
+    current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
   // field.name z
   {
-    size_t array_size = 6;
-    auto array_ptr = ros_message->z;
-    (void)array_ptr;
-    size_t item_size = sizeof(array_ptr[0]);
-    current_alignment += array_size * item_size +
+    size_t item_size = sizeof(ros_message->z);
+    current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
   // field.name f
@@ -205,21 +184,21 @@ size_t max_serialized_size_learning_interface__msg__ObjectPosition(
 
   // member: x
   {
-    size_t array_size = 6;
+    size_t array_size = 1;
 
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
   // member: y
   {
-    size_t array_size = 6;
+    size_t array_size = 1;
 
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
   // member: z
   {
-    size_t array_size = 6;
+    size_t array_size = 1;
 
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));

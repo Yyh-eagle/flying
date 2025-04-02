@@ -63,6 +63,11 @@ CMakeFiles/learning_interface__cpp: rosidl_generator_cpp/learning_interface/msg/
 CMakeFiles/learning_interface__cpp: rosidl_generator_cpp/learning_interface/msg/detail/my_state__struct.hpp
 CMakeFiles/learning_interface__cpp: rosidl_generator_cpp/learning_interface/msg/detail/my_state__traits.hpp
 CMakeFiles/learning_interface__cpp: rosidl_generator_cpp/learning_interface/msg/detail/my_state__type_support.hpp
+CMakeFiles/learning_interface__cpp: rosidl_generator_cpp/learning_interface/msg/stm32.hpp
+CMakeFiles/learning_interface__cpp: rosidl_generator_cpp/learning_interface/msg/detail/stm32__builder.hpp
+CMakeFiles/learning_interface__cpp: rosidl_generator_cpp/learning_interface/msg/detail/stm32__struct.hpp
+CMakeFiles/learning_interface__cpp: rosidl_generator_cpp/learning_interface/msg/detail/stm32__traits.hpp
+CMakeFiles/learning_interface__cpp: rosidl_generator_cpp/learning_interface/msg/detail/stm32__type_support.hpp
 CMakeFiles/learning_interface__cpp: rosidl_generator_cpp/learning_interface/srv/add_two_ints.hpp
 CMakeFiles/learning_interface__cpp: rosidl_generator_cpp/learning_interface/srv/detail/add_two_ints__builder.hpp
 CMakeFiles/learning_interface__cpp: rosidl_generator_cpp/learning_interface/srv/detail/add_two_ints__struct.hpp
@@ -102,6 +107,7 @@ rosidl_generator_cpp/learning_interface/msg/object_position.hpp: /opt/ros/foxy/s
 rosidl_generator_cpp/learning_interface/msg/object_position.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/srv__type_support.hpp.em
 rosidl_generator_cpp/learning_interface/msg/object_position.hpp: rosidl_adapter/learning_interface/msg/ObjectPosition.idl
 rosidl_generator_cpp/learning_interface/msg/object_position.hpp: rosidl_adapter/learning_interface/msg/MyState.idl
+rosidl_generator_cpp/learning_interface/msg/object_position.hpp: rosidl_adapter/learning_interface/msg/STM32.idl
 rosidl_generator_cpp/learning_interface/msg/object_position.hpp: rosidl_adapter/learning_interface/srv/AddTwoInts.idl
 rosidl_generator_cpp/learning_interface/msg/object_position.hpp: rosidl_adapter/learning_interface/srv/GetObjectPosition.idl
 rosidl_generator_cpp/learning_interface/msg/object_position.hpp: rosidl_adapter/learning_interface/action/MoveCircle.idl
@@ -141,6 +147,21 @@ rosidl_generator_cpp/learning_interface/msg/detail/my_state__traits.hpp: rosidl_
 
 rosidl_generator_cpp/learning_interface/msg/detail/my_state__type_support.hpp: rosidl_generator_cpp/learning_interface/msg/object_position.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/learning_interface/msg/detail/my_state__type_support.hpp
+
+rosidl_generator_cpp/learning_interface/msg/stm32.hpp: rosidl_generator_cpp/learning_interface/msg/object_position.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/learning_interface/msg/stm32.hpp
+
+rosidl_generator_cpp/learning_interface/msg/detail/stm32__builder.hpp: rosidl_generator_cpp/learning_interface/msg/object_position.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/learning_interface/msg/detail/stm32__builder.hpp
+
+rosidl_generator_cpp/learning_interface/msg/detail/stm32__struct.hpp: rosidl_generator_cpp/learning_interface/msg/object_position.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/learning_interface/msg/detail/stm32__struct.hpp
+
+rosidl_generator_cpp/learning_interface/msg/detail/stm32__traits.hpp: rosidl_generator_cpp/learning_interface/msg/object_position.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/learning_interface/msg/detail/stm32__traits.hpp
+
+rosidl_generator_cpp/learning_interface/msg/detail/stm32__type_support.hpp: rosidl_generator_cpp/learning_interface/msg/object_position.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/learning_interface/msg/detail/stm32__type_support.hpp
 
 rosidl_generator_cpp/learning_interface/srv/add_two_ints.hpp: rosidl_generator_cpp/learning_interface/msg/object_position.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/learning_interface/srv/add_two_ints.hpp
@@ -198,6 +219,11 @@ learning_interface__cpp: rosidl_generator_cpp/learning_interface/msg/detail/my_s
 learning_interface__cpp: rosidl_generator_cpp/learning_interface/msg/detail/my_state__struct.hpp
 learning_interface__cpp: rosidl_generator_cpp/learning_interface/msg/detail/my_state__traits.hpp
 learning_interface__cpp: rosidl_generator_cpp/learning_interface/msg/detail/my_state__type_support.hpp
+learning_interface__cpp: rosidl_generator_cpp/learning_interface/msg/stm32.hpp
+learning_interface__cpp: rosidl_generator_cpp/learning_interface/msg/detail/stm32__builder.hpp
+learning_interface__cpp: rosidl_generator_cpp/learning_interface/msg/detail/stm32__struct.hpp
+learning_interface__cpp: rosidl_generator_cpp/learning_interface/msg/detail/stm32__traits.hpp
+learning_interface__cpp: rosidl_generator_cpp/learning_interface/msg/detail/stm32__type_support.hpp
 learning_interface__cpp: rosidl_generator_cpp/learning_interface/srv/add_two_ints.hpp
 learning_interface__cpp: rosidl_generator_cpp/learning_interface/srv/detail/add_two_ints__builder.hpp
 learning_interface__cpp: rosidl_generator_cpp/learning_interface/srv/detail/add_two_ints__struct.hpp

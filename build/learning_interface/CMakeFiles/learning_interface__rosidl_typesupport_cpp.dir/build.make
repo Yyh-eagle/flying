@@ -65,6 +65,7 @@ rosidl_typesupport_cpp/learning_interface/msg/object_position__type_support.cpp:
 rosidl_typesupport_cpp/learning_interface/msg/object_position__type_support.cpp: /opt/ros/foxy/share/rosidl_typesupport_cpp/resource/srv__type_support.cpp.em
 rosidl_typesupport_cpp/learning_interface/msg/object_position__type_support.cpp: rosidl_adapter/learning_interface/msg/ObjectPosition.idl
 rosidl_typesupport_cpp/learning_interface/msg/object_position__type_support.cpp: rosidl_adapter/learning_interface/msg/MyState.idl
+rosidl_typesupport_cpp/learning_interface/msg/object_position__type_support.cpp: rosidl_adapter/learning_interface/msg/STM32.idl
 rosidl_typesupport_cpp/learning_interface/msg/object_position__type_support.cpp: rosidl_adapter/learning_interface/srv/AddTwoInts.idl
 rosidl_typesupport_cpp/learning_interface/msg/object_position__type_support.cpp: rosidl_adapter/learning_interface/srv/GetObjectPosition.idl
 rosidl_typesupport_cpp/learning_interface/msg/object_position__type_support.cpp: rosidl_adapter/learning_interface/action/MoveCircle.idl
@@ -80,6 +81,9 @@ rosidl_typesupport_cpp/learning_interface/msg/object_position__type_support.cpp:
 
 rosidl_typesupport_cpp/learning_interface/msg/my_state__type_support.cpp: rosidl_typesupport_cpp/learning_interface/msg/object_position__type_support.cpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_cpp/learning_interface/msg/my_state__type_support.cpp
+
+rosidl_typesupport_cpp/learning_interface/msg/stm32__type_support.cpp: rosidl_typesupport_cpp/learning_interface/msg/object_position__type_support.cpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_cpp/learning_interface/msg/stm32__type_support.cpp
 
 rosidl_typesupport_cpp/learning_interface/srv/add_two_ints__type_support.cpp: rosidl_typesupport_cpp/learning_interface/msg/object_position__type_support.cpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_cpp/learning_interface/srv/add_two_ints__type_support.cpp
@@ -116,9 +120,22 @@ CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/msg/my_state__type_support.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_cpp/learning_interface/msg/my_state__type_support.cpp -o CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/msg/my_state__type_support.cpp.s
 
+CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/msg/stm32__type_support.cpp.o: CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/flags.make
+CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/msg/stm32__type_support.cpp.o: rosidl_typesupport_cpp/learning_interface/msg/stm32__type_support.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/msg/stm32__type_support.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/msg/stm32__type_support.cpp.o -c /home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_cpp/learning_interface/msg/stm32__type_support.cpp
+
+CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/msg/stm32__type_support.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/msg/stm32__type_support.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_cpp/learning_interface/msg/stm32__type_support.cpp > CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/msg/stm32__type_support.cpp.i
+
+CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/msg/stm32__type_support.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/msg/stm32__type_support.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_cpp/learning_interface/msg/stm32__type_support.cpp -o CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/msg/stm32__type_support.cpp.s
+
 CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/srv/add_two_ints__type_support.cpp.o: CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/flags.make
 CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/srv/add_two_ints__type_support.cpp.o: rosidl_typesupport_cpp/learning_interface/srv/add_two_ints__type_support.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/srv/add_two_ints__type_support.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/srv/add_two_ints__type_support.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/srv/add_two_ints__type_support.cpp.o -c /home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_cpp/learning_interface/srv/add_two_ints__type_support.cpp
 
 CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/srv/add_two_ints__type_support.cpp.i: cmake_force
@@ -131,7 +148,7 @@ CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp
 
 CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/srv/get_object_position__type_support.cpp.o: CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/flags.make
 CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/srv/get_object_position__type_support.cpp.o: rosidl_typesupport_cpp/learning_interface/srv/get_object_position__type_support.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/srv/get_object_position__type_support.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/srv/get_object_position__type_support.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/srv/get_object_position__type_support.cpp.o -c /home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_cpp/learning_interface/srv/get_object_position__type_support.cpp
 
 CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/srv/get_object_position__type_support.cpp.i: cmake_force
@@ -144,7 +161,7 @@ CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp
 
 CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/action/move_circle__type_support.cpp.o: CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/flags.make
 CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/action/move_circle__type_support.cpp.o: rosidl_typesupport_cpp/learning_interface/action/move_circle__type_support.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/action/move_circle__type_support.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/action/move_circle__type_support.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/action/move_circle__type_support.cpp.o -c /home/yyh/ros2_ws/build/learning_interface/rosidl_typesupport_cpp/learning_interface/action/move_circle__type_support.cpp
 
 CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/action/move_circle__type_support.cpp.i: cmake_force
@@ -159,6 +176,7 @@ CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp
 learning_interface__rosidl_typesupport_cpp_OBJECTS = \
 "CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/msg/object_position__type_support.cpp.o" \
 "CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/msg/my_state__type_support.cpp.o" \
+"CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/msg/stm32__type_support.cpp.o" \
 "CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/srv/add_two_ints__type_support.cpp.o" \
 "CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/srv/get_object_position__type_support.cpp.o" \
 "CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/action/move_circle__type_support.cpp.o"
@@ -168,6 +186,7 @@ learning_interface__rosidl_typesupport_cpp_EXTERNAL_OBJECTS =
 
 liblearning_interface__rosidl_typesupport_cpp.so: CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/msg/object_position__type_support.cpp.o
 liblearning_interface__rosidl_typesupport_cpp.so: CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/msg/my_state__type_support.cpp.o
+liblearning_interface__rosidl_typesupport_cpp.so: CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/msg/stm32__type_support.cpp.o
 liblearning_interface__rosidl_typesupport_cpp.so: CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/srv/add_two_ints__type_support.cpp.o
 liblearning_interface__rosidl_typesupport_cpp.so: CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/srv/get_object_position__type_support.cpp.o
 liblearning_interface__rosidl_typesupport_cpp.so: CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/learning_interface/action/move_circle__type_support.cpp.o
@@ -195,7 +214,7 @@ liblearning_interface__rosidl_typesupport_cpp.so: /opt/ros/foxy/lib/librosidl_ru
 liblearning_interface__rosidl_typesupport_cpp.so: /opt/ros/foxy/lib/librcpputils.so
 liblearning_interface__rosidl_typesupport_cpp.so: /opt/ros/foxy/lib/librcutils.so
 liblearning_interface__rosidl_typesupport_cpp.so: CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX shared library liblearning_interface__rosidl_typesupport_cpp.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yyh/ros2_ws/build/learning_interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX shared library liblearning_interface__rosidl_typesupport_cpp.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -209,6 +228,7 @@ CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/clean:
 
 CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/depend: rosidl_typesupport_cpp/learning_interface/msg/object_position__type_support.cpp
 CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/depend: rosidl_typesupport_cpp/learning_interface/msg/my_state__type_support.cpp
+CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/depend: rosidl_typesupport_cpp/learning_interface/msg/stm32__type_support.cpp
 CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/depend: rosidl_typesupport_cpp/learning_interface/srv/add_two_ints__type_support.cpp
 CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/depend: rosidl_typesupport_cpp/learning_interface/srv/get_object_position__type_support.cpp
 CMakeFiles/learning_interface__rosidl_typesupport_cpp.dir/depend: rosidl_typesupport_cpp/learning_interface/action/move_circle__type_support.cpp
