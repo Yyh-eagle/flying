@@ -33,12 +33,13 @@ class SubscriberNode(Node):
             ObjectPosition, "/d435_object_position", self.listener_callback_d435, 10)#不订阅图像，只保留目标信息
         self.sub_usb  = self.create_subscription(\
             ObjectPosition,'/usb_object_position',self.listener_callback_usb,10)
-        self.tim = self.create_timer(0.1, self.timer_callback) #主循环 10帧
+        self.tim = self.create_timer(0.01, self.timer_callback) #主循环 10帧
         
         
     def timer_callback(self):
         #self.serial.Timer_zero()#清零所需变量
         self.serial.receive()#定时器接受数据
+        #self.get_logger().info(str(self.serial.receive_num))
         #将接受到的变量赋值在msg中
         msg = STM32()#成功实现通信
         msg.ifarrive = self.serial.ifArrive_int
@@ -82,12 +83,12 @@ class SubscriberNode(Node):
         
         #为了串口输出数据
         self.serial.t_flag_u = 1
-        self.serial.T265_x_f = self.r_a[0]*100
-        self.serial.T265_y_f = self.r_a[1]*100
+        self.serial.T265_x_f = -self.r_a[1]*100
+        self.serial.T265_y_f = self.r_a[0]*100
         self.serial.T265_z_f = self.r_a[2]*100
         
         self.serial.Send_message()
-        self.get_logger().info(str(self.serial.data_num))
+        #self.get_logger().info(str(self.serial.data_num))
         
     def listener_callback_d435(self, msg): 
         #将的d435i的相机坐标系下的坐标保存

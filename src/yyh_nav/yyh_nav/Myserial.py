@@ -10,7 +10,7 @@ class SerialPort():
 
         self.serial_port = serial.Serial(
             port='/dev/ttyUSB0',#串口号#bug 固定串口
-            baudrate=115200,#波特率
+            baudrate=460800,#波特率
             bytesize=serial.EIGHTBITS,#八位字节
             parity=serial.PARITY_NONE,
             stopbits=serial.STOPBITS_ONE,
@@ -31,7 +31,7 @@ class SerialPort():
         self.Task_data6_float = None
         self.Task_data7_int = None
         self.Task_data8_int = None
-  
+        self.receive_num = None
         
     #接收动作，每个周期执行
     def receive(self):
@@ -48,6 +48,7 @@ class SerialPort():
                 self.parse_packet(response)
 
         self.serial_port.flushInput()
+        self.receive_num = [self.ifArrive_int,self.task_id_int,self.task_state_int,self.d435_yaw_float,self.Task_data3_float,self.Task_data4_float,self.Task_data5_float,self.Task_data6_float,self.Task_data7_int,self.Task_data8_int]
     #数据解包分配
     def parse_packet(self,packet):
         # 提取数据部分（去除帧头和帧尾）0
@@ -65,7 +66,7 @@ class SerialPort():
         self.Task_data7_int = struct.unpack('<i', data[32:36])[0]
         self.Task_data8_int = struct.unpack('<i', data[36:40])[0]
     #------------------------------------------数据发送----------------------------------------------------#
-    #------------------------------------------一共19个浮点数，外加4位，共有80个u8--------------------------#    
+    #------------------------------------------一共19个浮点数，外加4位，共有71个u8--------------------------#    
     def init_send_var(self):#所有单位都是厘米
         self.t_flag_u = 0#T265是否工作
         self.d_flag_u = 0#D435i是否检测到目标
@@ -85,7 +86,7 @@ class SerialPort():
         self.send_data3_f = 0
         self.send_data4_f = 0#18
         self.send_data5_i = 0
-        self.send_data6_i = 0
+        self.send_data6_i = 6
         
 
     #每个周期循环一次

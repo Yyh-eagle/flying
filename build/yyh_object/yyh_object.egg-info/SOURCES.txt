@@ -14,7 +14,9 @@ resource/yyh_object
 test/test_copyright.py
 test/test_flake8.py
 test/test_pep257.py
+yyh_object/Coord_Trans.py
 yyh_object/__init__.py
 yyh_object/camera.py
 yyh_object/image.py
 yyh_object/yolo_function.py
+yyh_object/__pycache__/yolo_function.cpython-38.pyc

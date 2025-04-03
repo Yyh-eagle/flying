@@ -15,7 +15,7 @@ import sys
 sys.path.append('/home/yyh/ros2_ws/src/yyh_object/yyh_object/')
 import os
 import datetime
-from yolo_function import locate_yolo_d4
+from yolo_function import *
 from ament_index_python.packages import get_package_share_directory#用于
 from yolov5 import YOLOv5
 
@@ -41,6 +41,7 @@ class Param():#当做参数传递
         self.color_d435i = color_d435i
         self.depth_d435i = depth_d435i
         self.intrinsics =intrinsics
+
 
 class ImageSubscriber(Node):
     def __init__(self, name):
@@ -77,58 +78,30 @@ class ImageSubscriber(Node):
             ObjectPosition, "usb_object_position", 10)    
         #########################################yolo#########################################
         
+        model_path = f"{package_share_directory}/config/best_8_1_2.pt"#模型的路径
 
-        self.declare_parameter("model", f"{package_share_directory}/config/best_8_1_2.pt", ParameterDescriptor(
-            name="model", description=f"default: {package_share_directory}/config/best_landing1.pt"))
-
-        self.declare_parameter("image_topic", "/image_raw", ParameterDescriptor(
-            name="image_topic", description=f"default: /image_raw"))
-
-        self.declare_parameter("camera_info_topic", "/camera/camera_info", ParameterDescriptor(
-            name="camera_info_topic", description=f"default: /camera/camera_info"))
-
-        # 默认从camera_info中读取参数,如果可以从话题接收到参数则覆盖文件中的参数
-        self.declare_parameter("camera_info_file", f"{package_share_directory}/config/camera_info.yaml", ParameterDescriptor(
-            name="camera_info", description=f"{package_share_directory}/config/camera_info.yaml"))
-        
-        
-        # 1.load model
-        model = self.get_parameter('model').value
- 
-        self.yolov5 = YOLOv5(model_path=model, device="cpu")
+        self.yolov5 = YOLOv5(model_path=model_path, device="cpu")
     def listener_callback_stm(self,msg):#主任务在这里写，可以保证周期话运行
         #每次收到stm32的信息，都赋值给全局变量
         self.ifarrive = msg.ifarrive
         self.task_id = msg.id
         self.task_state = msg.state
         self.D435i_yaw = msg.yaw
+        self.param.update_param(self.ifarrive,self.task_state,self.task_id,self.D435i_yaw,self.colord435i,self.depthd435i,self.intrinsics)
+
         
-        if self.colord435i is not None and self.depthd435i is not None and self.intrinsics is not None:#bug效果太慢了，太卡了
-            self.param.update_param(self.ifarrive,self.task_state,self.task_id,self.D435i_yaw,self.colord435i,self.depthd435i,self.intrinsics)
-            #self.get_logger().info("vision") 
-            #任务规划
-            self.task_plan()
-            cv2.putText(self.colord435i,"task_state: "+str(self.task_state),(10,50),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
-            cv2.putText(self.colord435i,"task_id: "+str(self.task_id),(10,90),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
-            cv2.imshow("d435i",self.colord435i)
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                return
+        
+    def Aim2Objetc(self,aim):
+        object = ObjectPosition()
+        object.x = aim.x
+        object.y = aim.y
+        object.z = aim.z
+        object.f = aim.f
+        object.kind = aim.kind
+        return object
 
 
-    def task_plan(self):
-        if self.task_state == 0:
-            if self.task_id == 0:
-                locate_yolo_d4(self.param,self.yolov5)
-            elif self.task_id == 1:
-                pass
 
-            else:
-                pass
-
-        elif self.task_state == 1:
-            pass
-        else:
-            pass
     # 图像回调函数
     def listener_callback_depth(self , data):
         
@@ -136,6 +109,23 @@ class ImageSubscriber(Node):
     def listener_callback_d435(self, data):
         
         self.colord435i = self.cv_bridge.imgmsg_to_cv2(data, 'bgr8')
+        if self.param.task_state is not None and self.param.color_d435i is not None and self.param.depth_d435i is not None and self.param.intrinsics is not None:
+            cv2.putText(self.colord435i,"task_state: "+str(self.task_state),(10,50),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
+            cv2.putText(self.colord435i,"task_id: "+str(self.task_id),(10,90),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
+            if self.param.task_state == 0:
+                self.get_logger().info("yolo")
+                aim=yolo_root_d4(self.param,self.yolov5)#进行yolo识别
+                    
+                if aim is not None:
+                    object = self.Aim2Objetc(aim)
+                    self.get_logger().info("d435i_object_position")
+
+                    self.pub_d435.publish(object)#发送目标数据
+
+        cv2.imshow("d435i",self.colord435i)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            return
+        
     def camera_info_callback(self, msg):
         # 获取内参
         self.intrinsics = rs2.intrinsics()
