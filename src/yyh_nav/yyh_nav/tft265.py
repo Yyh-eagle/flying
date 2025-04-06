@@ -15,6 +15,7 @@ import matplotlib.pyplot
 import sys
 sys.path.append('/home/yyh/ros2_ws/src/yyh_nav/yyh_nav/')
 from Myserial import SerialPort
+from data_vision import ImageVisualizer
 import time
 
 
@@ -24,6 +25,7 @@ class SubscriberNode(Node):
     def __init__(self, name):
         super().__init__(name)
         self.serial = SerialPort()#通信类初始化
+        self.vision =  ImageVisualizer()
         #创建发布者
         self.pub = self.create_publisher(STM32, "/stm_info", 10)#stm32的状态机控制信息
         # 创建订阅者
@@ -89,17 +91,18 @@ class SubscriberNode(Node):
         
         self.serial.Send_message()
         #self.get_logger().info(str(self.serial.data_num))
+        # self.vision.update_variable("T265_x",self.serial.T265_x_f)
+        # self.vision.update_variable("T265_y",self.serial.T265_y_f)
+        # self.vision.update_variable("T265_z",self.serial.T265_z_f)
         
     def listener_callback_d435(self, msg): 
-        #将的d435i的相机坐标系下的坐标保存
-    
-        #怎么控制各个节点开闭？？？
 
-        self.d435_x,self.d435_y,self.d435_z=msg.x,msg.y,msg.z
+
+
+        self.d435_x,self.d435_y,self.d435_z=msg.x/10,msg.y/10,msg.z/10
         self.serial.d435_flag_u = msg.f#是否有目标
         self.serial.D435_aim_i =msg.kind#目标是什么类型
         #这几个值倒是是什么数据类型？
-        self.get_logger().info('相机坐标系: "(%d,%d,%d)"' % (self.d435_x, self.d435_y,self.d435_z))
         self.get_world_point()#d经过世界坐标转换
         
     def get_world_point(self):
@@ -108,17 +111,22 @@ class SubscriberNode(Node):
         yaw = self.euler[2]*np.pi/180
         
         x_d = np.array([self.d435_x,self.d435_y,self.d435_z])#t265坐标系下的目标点
-
-        self.get_logger().info("t265坐标系下的目标点: %d, %d, %d" % (x_d[0]/10, x_d[1]/10, x_d[2]/10))
-        x_w = x_d[0]*np.cos(yaw) - x_d[1]*np.sin(yaw) + self.t2x*1000 +197#mm
-        y_w = x_d[0]*np.sin(yaw) + x_d[1]*np.cos(yaw) + self.t2y*1000
-
-        self.get_logger().info("最终得到的坐标:[%d, %d]cm" % (x_w/100, y_w/100))#todo单位是不是cm？
-
-        self.serial.d435_x_f = x_w/100
-        self.serial.d435_y_f = y_w/100
-        self.serial.d435_z_f = self.d435_z/100
-        
+       # self.get_logger().info("t265坐标系下的目标点: %d, %d, %d" % (x_d[0], x_d[1], x_d[2]))
+        self.get_logger().info("t265坐标系下的目标点: %d, %d, %d" % (self.t2x*100, self.t2y*100, self.t2z*100))
+        x_w = x_d[0]*np.cos(yaw) - x_d[1]*np.sin(yaw) + self.t2x*100
+        y_w = x_d[0]*np.sin(yaw) + x_d[1]*np.cos(yaw) + self.t2y*100
+        z_w = x_d[2]+self.t2z*100
+       # self.get_logger().info("最终得到的坐标:[%d, %d]cm" % (x_w/100, y_w/100))#todo单位是不是cm？
+        self.get_logger().info("最终得到的坐标:[%d, %d, %d]cm" % (x_w, y_w,z_w))
+        self.serial.d435_x_f = x_w
+        self.serial.d435_y_f = y_w
+        self.serial.d435_z_f = self.d435_z
+       # self.vision.update_variable("T265_obj_x",self.d435_x)
+       # self.vision.update_variable("T265_obj_y",self.d435_y)
+       # self.vision.update_variable("T265_obj_z",self.d435_z)
+        # self.vision.update_variable("world_obj_x",self.serial.d435_x_f)
+        # self.vision.update_variable("world_obj_y",self.serial.d435_y_f)
+        # self.vision.update_variable("world_obj_z",self.serial.d435_z_f)
     def listener_callback_usb(self,msg):
         self.usb_x=msg.x
         self.usb_y=msg.y

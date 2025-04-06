@@ -13,6 +13,7 @@ import math
 
 import sys
 sys.path.append('/home/yyh/ros2_ws/src/yyh_object/yyh_object/')
+sys.path.append('/home/yyh/ros2_ws/src/yyh_nav/yyh_nav/')
 import os
 import datetime
 from yolo_function import *
@@ -23,7 +24,7 @@ from yolov5 import YOLOv5
 package_share_directory = get_package_share_directory('yolov5_ros2')
 
 class Param():#当做参数传递
-    def __init__(self):
+    def __init__(self,logger):
         self.ifarrive = None
         self.task_state = None
         self.task_id = None
@@ -31,16 +32,15 @@ class Param():#当做参数传递
         self.color_d435i = None
         self.depth_d435i = None
         self.intrinsics =None
+        self.logger = logger
         #self.usb =None
     
-    def update_param(self,ifarrive,task_state,task_id,D435i_yaw,color_d435i,depth_d435i,intrinsics):
+    def update_param(self,ifarrive,task_state,task_id,D435i_yaw):
         self.ifarrive = ifarrive
         self.task_state = task_state
         self.task_id = task_id
         self.D435i_yaw = D435i_yaw
-        self.color_d435i = color_d435i
-        self.depth_d435i = depth_d435i
-        self.intrinsics =intrinsics
+
 
 
 class ImageSubscriber(Node):
@@ -49,7 +49,7 @@ class ImageSubscriber(Node):
         super().__init__(name)    
         # ROS2节点父类初始化
         self.frame_cnt =0#todo 干啥用的
-        self.param = Param()
+        self.param = Param(self.get_logger())
         self.colord435i = None
         self.depthd435i = None
         self.intrinsics = None
@@ -77,21 +77,21 @@ class ImageSubscriber(Node):
         self.pub_usb = self.create_publisher(
             ObjectPosition, "usb_object_position", 10)    
         #########################################yolo#########################################
-        
-        model_path = f"{package_share_directory}/config/best_8_1_2.pt"#模型的路径
+
+
+        model_path = f"{package_share_directory}/config/best_8_1.pt"#模型的路径
 
         self.yolov5 = YOLOv5(model_path=model_path, device="cpu")
-    def listener_callback_stm(self,msg):#主任务在这里写，可以保证周期话运行
-        #每次收到stm32的信息，都赋值给全局变量
-        self.ifarrive = msg.ifarrive
-        self.task_id = msg.id
-        self.task_state = msg.state
-        self.D435i_yaw = msg.yaw
-        self.param.update_param(self.ifarrive,self.task_state,self.task_id,self.D435i_yaw,self.colord435i,self.depthd435i,self.intrinsics)
 
-        
-        
-    def Aim2Objetc(self,aim):
+
+    def task_plan(self,param):#任务规划
+        if param.task_state == 0:
+            if self.param.task_state == 0:
+                aim = yolo_root_d4(param,self.yolov5)
+                if aim is not None:
+                    object = self.Aim2Object(aim)
+                    self.pub_d435.publish(object)
+    def Aim2Object(self,aim):
         object = ObjectPosition()
         object.x = aim.x
         object.y = aim.y
@@ -106,23 +106,16 @@ class ImageSubscriber(Node):
     def listener_callback_depth(self , data):
         
         self.depthd435i = self.cv_bridge.imgmsg_to_cv2(data, '16UC1')   # 将ROS的图像消息转化成OpenCV图像  
+        self.param.depth_d435i = self.depthd435i
     def listener_callback_d435(self, data):
         
         self.colord435i = self.cv_bridge.imgmsg_to_cv2(data, 'bgr8')
+        self.param.color_d435i = self.colord435i
         if self.param.task_state is not None and self.param.color_d435i is not None and self.param.depth_d435i is not None and self.param.intrinsics is not None:
-            cv2.putText(self.colord435i,"task_state: "+str(self.task_state),(10,50),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
-            cv2.putText(self.colord435i,"task_id: "+str(self.task_id),(10,90),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
-            if self.param.task_state == 0:
-                self.get_logger().info("yolo")
-                aim=yolo_root_d4(self.param,self.yolov5)#进行yolo识别
-                    
-                if aim is not None:
-                    object = self.Aim2Objetc(aim)
-                    self.get_logger().info("d435i_object_position")
-
-                    self.pub_d435.publish(object)#发送目标数据
-
-        cv2.imshow("d435i",self.colord435i)
+            cv2.putText(self.param.color_d435i,"task_state: "+str(self.task_state),(10,50),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
+            cv2.putText(self.param.color_d435i,"task_id: "+str(self.task_id),(10,90),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
+            self.task_plan(self.param)
+        cv2.imshow("d435i",self.param.color_d435i)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             return
         
@@ -136,10 +129,19 @@ class ImageSubscriber(Node):
         self.intrinsics.ppx = msg.k[2]  # 主点 x 坐标
         self.intrinsics.ppy = msg.k[5]  # 主点 y 坐标
         self.intrinsics.model = rs2.distortion.brown_conrady  # 使用的畸变模型
-        self.intrinsics.coeffs = [msg.d[0], msg.d[1], msg.d[2], msg.d[3], msg.d[4]]          
-    
+        self.intrinsics.coeffs = [msg.d[0], msg.d[1], msg.d[2], msg.d[3], msg.d[4]]
+        self.param.intrinsics = self.intrinsics         
     
 
+    def listener_callback_stm(self,msg):#主任务在这里写，可以保证周期话运行
+    #每次收到stm32的信息，都赋值给全局变量
+        self.ifarrive = msg.ifarrive
+        self.task_id = msg.id
+        self.task_state = msg.state
+        self.D435i_yaw = msg.yaw
+        self.param.update_param(self.ifarrive,self.task_state,self.task_id,self.D435i_yaw)
+
+    
 
 
             

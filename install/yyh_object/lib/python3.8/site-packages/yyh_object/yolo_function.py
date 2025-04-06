@@ -9,9 +9,12 @@ def yolo_root_d4(param,yolo):
     """
     yolo的总功能函数
     """
+
     result=yolo_recog(param,YOLO_THRESHOLD,yolo)#threshold =0.8
+    
     if result==None:#保证有结果的时候再坐标转换
         return None
+      
     return locate_d4(param,result)
 
 
@@ -26,13 +29,17 @@ def yolo_recog(param,threshold,yolo):#yolo
 
     for index in range(len(kinds)):
         name = detect_result.names[int(kinds[index])]
-        if name ==param.task_id:#todo定义目标字典
+        #param.logger.info(name)
+        #if name ==param.task_id:#todo定义目标字典
+        if name =="landing_cross":#todo定义目标字典
+
             x1, y1, x2, y2 = boxes[index]#find th center of the box
             probability= detect_result.pred[0][index][4]
             if probability>threshold:#置信度修改
-                result=(int((x1+x2)/2),int((y1+y2)/2),int(x1),int(y1),int(x2),int(y2),probability,name_order)
-                cv2.putText(param.color_d435i,str(name_order),(x1,y1 ), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
-                cv2.rectangle(param.color_d435i, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                result=(int((x1+x2)/2),int((y1+y2)/2),int(x1),int(y1),int(x2),int(y2),probability,1)
+                #param.logger.info(str(result))
+                #cv2.putText(param.color_d435i,str(name),(int(x1),int(y1)), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
+                cv2.rectangle(param.color_d435i, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
                 return result#result可能为空
             else:
                 return None
